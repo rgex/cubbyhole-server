@@ -1,1 +1,19 @@
-inscription
+
+
+<h1><?php echo $this->translate('register'); ?></h1>
+<?php
+$this->headTitle($this->translate('register'));
+$this->form->setAttribute('action',$this->url('register'));
+$this->form->prepare();
+
+echo $this->form()->openTag();
+echo $this->formHidden($this->form->get('id'));
+echo $this->formRow($this->form->get('firstName'));
+echo $this->formRow($this->form->get('lastName'));
+echo $this->formRow($this->form->get('email'));
+echo $this->formRow($this->form->get('password1'));
+echo $this->formRow($this->form->get('password2'));
+echo $this->formRow($this->form->get('phone'));
+echo $this->formSubmit($this->form->get('submit'));
+echo $this->form()->closeTag();
+?>

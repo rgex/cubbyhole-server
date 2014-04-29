@@ -38,7 +38,8 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                        <li <?php if($this->activeTab == 'login'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('login') ?>"><?php echo $this->translate('Login') ?></a></li>
+                        <li <?php if($this->activeTab == 'register'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('register') ?>"><?php echo $this->translate('Register') ?></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -47,7 +48,7 @@
             <?php echo $this->content; ?>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+                <p>&copy; CubbyHole 2014</p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>

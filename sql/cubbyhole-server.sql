@@ -2,10 +2,10 @@
 -- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost
--- Généré le :  Dim 02 Février 2014 à 02:00
--- Version du serveur :  5.1.73-1
--- Version de PHP :  5.3.3-7+squeeze18
+-- Host: localhost
+-- Generation Time: Apr 29, 2014 at 06:50 AM
+-- Server version: 5.1.73-1
+-- PHP Version: 5.3.3-7+squeeze18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `cubbyhole-server`
+-- Database: `cubbyhole-server`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `files`
+-- Table structure for table `files`
 --
 
 CREATE TABLE IF NOT EXISTS `files` (
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `files` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `offers`
+-- Table structure for table `offers`
 --
 
 CREATE TABLE IF NOT EXISTS `offers` (
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `payments`
+-- Table structure for table `payments`
 --
 
 CREATE TABLE IF NOT EXISTS `payments` (
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `subscriptions`
+-- Table structure for table `subscriptions`
 --
 
 CREATE TABLE IF NOT EXISTS `subscriptions` (
@@ -90,15 +90,18 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(120) NOT NULL,
-  `firstname` varchar(40) NOT NULL,
-  `lastname` varchar(40) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `first_name` varchar(40) NOT NULL,
+  `last_name` varchar(40) NOT NULL,
+  `phone` varchar(30) NOT NULL,
   `subscription_date` int(22) NOT NULL COMMENT 'timestamp',
+  `last_connection_date` int(22) NOT NULL,
   `subscription_ip` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -106,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `workers`
+-- Table structure for table `workers`
 --
 
 CREATE TABLE IF NOT EXISTS `workers` (

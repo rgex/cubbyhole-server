@@ -11,6 +11,10 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Application\Model\User;
+use Application\Model\UserTable;
+use Zend\Db\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 
 class Module
 {
@@ -35,5 +39,22 @@ class Module
                 ),
             ),
         );
+    }
+    
+    public function getServiceConfig()
+    {
+        return array('factories' => array(
+            'Application\Model\UserTable' => function($sm){
+                $tableGateway = $sm->get('UserTableGateway');
+                $table = new UserTable($tableGateway);
+                return $table;
+            },
+            'UserTableGateway' => function($sm){
+                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                $resultSetAdapter = new ResultSet();
+                $resultSetAdapter->setArrayOjectPrototype(new User());
+                return new TableGateway('users',$dbAdapter,null,$resultSetAdapter);
+            }
+        ));
     }
 }

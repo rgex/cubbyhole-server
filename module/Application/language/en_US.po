@@ -31,8 +31,8 @@ msgstr ""
 
 #: ../view/application/index/index.phtml:2
 #, php-format
-msgid "Welcome to %sZend Framework 2%s"
-msgstr ""
+msgid "Welcome_Messages"
+msgstr "Welcome to %s"
 
 #: ../view/application/index/index.phtml:3
 #, php-format
