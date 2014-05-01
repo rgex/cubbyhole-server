@@ -40,6 +40,19 @@ return array(
                     ),
                 ),
             ),
+            'captcha' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/captcha/[:id]',
+                    'constraints' => array(
+                        'id' => '[a-zA-Z0-9_\.-]{1,}'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Captcha',
+                        'action'     => 'generate',
+                    ),
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -93,7 +106,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Captcha' => 'Application\Controller\CaptchaController'
         ),
     ),
     'view_manager' => array(

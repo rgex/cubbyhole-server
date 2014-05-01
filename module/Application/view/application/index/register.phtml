@@ -1,19 +1,24 @@
+<h1 class="page-header center-text"><?php echo $this->translate('register'); ?></h1>
 
+<div class="form-container">
 
-<h1><?php echo $this->translate('register'); ?></h1>
 <?php
 $this->headTitle($this->translate('register'));
 $this->form->setAttribute('action',$this->url('register'));
+$this->form->setAttribute('class','form-horizontal');
 $this->form->prepare();
-
-echo $this->form()->openTag();
+echo $this->form()->openTag($this->form);
 echo $this->formHidden($this->form->get('id'));
-echo $this->formRow($this->form->get('firstName'));
-echo $this->formRow($this->form->get('lastName'));
-echo $this->formRow($this->form->get('email'));
-echo $this->formRow($this->form->get('password1'));
-echo $this->formRow($this->form->get('password2'));
-echo $this->formRow($this->form->get('phone'));
-echo $this->formSubmit($this->form->get('submit'));
+echo '<div class="input-row">'.$this->formRow($this->form->get('firstName')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('lastName')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('email')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('password')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('password2')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('phone')).'</div>';
+echo '<div class="input-row"><label><span style="height:100px;">'.$this->translate('Please proove that you are a human').'</span>';
+echo $this->formCaptcha($this->form->get('captcha'));
+echo $this->formElementErrors($this->form->get('captcha')).'</label></div>';
+echo '<div>'.$this->formSubmit($this->form->get('submit')).'</div>';
 echo $this->form()->closeTag();
 ?>
+</div>

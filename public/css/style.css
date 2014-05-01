@@ -35,3 +35,48 @@ div.container a.brand {
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }
+
+form label span{
+    width:200px;
+    display:block;
+    float:left;
+}
+
+.input-row{
+    border-width:0px 0px 1px 0px;
+    border-color:#dadada;
+    border-style:solid;
+    padding-top:5px;
+    padding-bottom:3px;
+}
+
+.input-row input{
+    width:190px;
+}
+
+.form-container{
+    margin-left:auto;
+    margin-right:auto;
+    width:450px;
+    padding:10px;
+    border:#dadada solid 1px;
+}
+
+.form-container .btn{
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left:190px;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.input-error{
+    background-color:#ffeeee;
+    border-color:#dd5555;
+}
+.input-row ul li{
+    /* Zend Error message */
+    color:#ff2222;
+}

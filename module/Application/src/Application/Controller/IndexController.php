@@ -1,11 +1,4 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
 
 namespace Application\Controller;
 
@@ -13,6 +6,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Model\User;
 use Application\Form\RegisterForm;
+use Application\Filter\RegisterFilter;
+use Zend\Crypt\Password\Bcrypt;
 
 class IndexController extends AbstractActionController
 {
@@ -21,8 +16,12 @@ class IndexController extends AbstractActionController
 
     }
     
+    /**
+     * 
+     * @return Application\Model\UserTable
+     */
     private function getUserTable() {
-        if(!$this->userTable)
+        if(!isset($this->userTable))
         {
             $sm = $this->getServiceLocator();
             $this->userTable = $sm->get('Application\Model\UserTable');
@@ -43,9 +42,30 @@ class IndexController extends AbstractActionController
     
     public function registerAction()
     {
-        $form = new RegisterForm();
-        
         $this->layout()->setVariable('activeTab', 'register');
+        $form = new RegisterForm();
+        if($this->getRequest()->isPost())
+        {
+            $registerFilter = new RegisterFilter($this->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
+            $form->setInputFilter($registerFilter->getInputFilter());
+            $form->setData($this->getRequest()->getPost());
+            
+            if($form->isValid())
+            {
+                $user = new User();
+                $data = array_merge($form->getData(),
+                        array('subscriptionDate'       => time(),
+                              'lastConnectionDate'    => time(),
+                              'subscriptionIp'         => $_SERVER['REMOTE_ADDR']));
+                $bcrypt = new Bcrypt();
+                $data['password'] = $bcrypt->create($data['password']); //hashing password
+                $user->exchangeArray($data);
+                $this->getUserTable()->insert($user->returnArray(array('id','privilege')));
+                
+                //TODO autologin
+                
+            }
+        }
         return new ViewModel(array('form' => $form));
     }
 }

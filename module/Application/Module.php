@@ -13,7 +13,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Application\Model\User;
 use Application\Model\UserTable;
-use Zend\Db\ResultSet;
+use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 class Module
@@ -52,7 +52,7 @@ class Module
             'UserTableGateway' => function($sm){
                 $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                 $resultSetAdapter = new ResultSet();
-                $resultSetAdapter->setArrayOjectPrototype(new User());
+                $resultSetAdapter->setArrayObjectPrototype(new User());
                 return new TableGateway('users',$dbAdapter,null,$resultSetAdapter);
             }
         ));

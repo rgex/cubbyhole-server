@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Model\UserTable;
+namespace Application\Model;
 use Zend\Db\TableGateway\TableGateway,
     Zend\Db\ResultSet\ResultSet;
 
@@ -25,4 +25,10 @@ class UserTable
         $row = $rowset->current();
         return $row;
     }
+    
+    public function insert($data)
+    {
+        $this->tableGateway->insert($data);
+    }
+    
 }
