@@ -36,7 +36,7 @@ class RegisterFilter implements InputFilterAwareInterface
             )));
             
             $inputFilter->add($factory->createInput(array(
-                'name'      => 'firstName',
+                'name'      => 'first_name',
                 'required'  => true,
                 'filters'   => array(
                     array('name' => 'StripTags'),
@@ -54,7 +54,7 @@ class RegisterFilter implements InputFilterAwareInterface
             )));
             
             $inputFilter->add($factory->createInput(array(
-                'name'      => 'lastName',
+                'name'      => 'last_name',
                 'required'  => true,
                 'filters'   => array(
                     array('name' => 'StripTags'),

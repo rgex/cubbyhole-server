@@ -1,4 +1,4 @@
-<h1 class="page-header center-text"><?php echo $this->translate('register'); ?></h1>
+<h1 class="page-header center-text"><?php echo $this->translate('Register'); ?></h1>
 
 <div class="form-container">
 
@@ -9,8 +9,8 @@ $this->form->setAttribute('class','form-horizontal');
 $this->form->prepare();
 echo $this->form()->openTag($this->form);
 echo $this->formHidden($this->form->get('id'));
-echo '<div class="input-row">'.$this->formRow($this->form->get('firstName')).'</div>';
-echo '<div class="input-row">'.$this->formRow($this->form->get('lastName')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('first_name')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('last_name')).'</div>';
 echo '<div class="input-row">'.$this->formRow($this->form->get('email')).'</div>';
 echo '<div class="input-row">'.$this->formRow($this->form->get('password')).'</div>';
 echo '<div class="input-row">'.$this->formRow($this->form->get('password2')).'</div>';

@@ -21,7 +21,7 @@ class RegisterForm extends Form
                          )
             ));
                 
-        $this->add(array('name' => 'firstName',
+        $this->add(array('name' => 'first_name',
                          'attributes'   => array(
                              'type'     => 'text',
                              'class'    => 'span2'
@@ -31,7 +31,7 @@ class RegisterForm extends Form
                          )
             ));
         
-        $this->add(array('name' => 'lastName',
+        $this->add(array('name' => 'last_name',
                          'attributes'   => array(
                              'type'     => 'text'
                          ),

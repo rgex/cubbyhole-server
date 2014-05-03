@@ -1,4 +1,16 @@
-login
+<h1 class="page-header center-text"><?php echo $this->translate('Login'); ?></h1>
+
+<div class="form-container">
+
 <?php
-var_dump($this->activeTab);
+$this->headTitle($this->translate('Login'));
+$this->form->setAttribute('action',$this->url('login'));
+$this->form->setAttribute('class','form-horizontal');
+$this->form->prepare();
+echo $this->form()->openTag($this->form);
+echo '<div class="input-row">'.$this->formRow($this->form->get('email')).'</div>';
+echo '<div class="input-row">'.$this->formRow($this->form->get('password')).'</div>';
+echo '<div>'.$this->formSubmit($this->form->get('submit')).'</div>';
+echo $this->form()->closeTag();
 ?>
+</div>

@@ -7,26 +7,26 @@ class User
     public $id;
     public $email;
     public $password;
-    public $firstName;
-    public $lastName;
+    public $first_name;
+    public $last_name;
     public $phone;
-    public $subscriptionDate;
-    public $lastConnectionDate;
-    public $subscriptionIp;
-    public $privilege;
+    public $subscription_date;
+    public $last_connection_date;
+    public $subscription_ip;
+    public $role;
     
     public function exchangeArray($data)
     {
         $this->id                   = (isset($data['id'])) ? $data['id'] : null;
-        $this->email                = (isset($data['email'])) ? $data['email'] : null;
+        $this->email                = (isset($data['email'])) ? strtolower($data['email']) : null;
         $this->password             = (isset($data['password'])) ? $data['password'] : null; //TODO : hash password
-        $this->firstName            = (isset($data['firstName'])) ? $data['firstName'] : null;
-        $this->lastName             = (isset($data['lastName'])) ? $data['lastName'] : null;
+        $this->first_name            = (isset($data['first_name'])) ? $data['first_name'] : null;
+        $this->last_name             = (isset($data['last_name'])) ? $data['last_name'] : null;
         $this->phone                = (isset($data['phone'])) ? $data['phone'] : null;
-        $this->subscriptionDate     = (isset($data['subscriptionDate'])) ? $data['subscriptionDate'] : null;
-        $this->lastConnectionDate   = (isset($data['lastConnectionDate'])) ? $data['lastConnectionDate'] : null;
-        $this->subscriptionIp       = (isset($data['subscriptionIp'])) ? $data['subscriptionIp'] : null;
-        $this->privilege            = (isset($data['privilege'])) ? $data['privilege'] : null;
+        $this->subscription_date     = (isset($data['subscription_date'])) ? $data['subscription_date'] : null;
+        $this->last_connection_date   = (isset($data['last_connection_date'])) ? $data['last_connection_date'] : null;
+        $this->subscription_ip       = (isset($data['subscription_ip'])) ? $data['subscription_ip'] : null;
+        $this->role                 = (isset($data['role'])) ? $data['role'] : null;
     }
     
     public function returnArray(Array $filterOut)
@@ -35,13 +35,13 @@ class User
                 'id'                    => $this->id,
                 'email'                 => $this->email,
                 'password'              => $this->password,
-                'first_name'            => $this->firstName,
-                'last_name'             => $this->lastName,
+                'first_name'            => $this->first_name,
+                'last_name'             => $this->last_name,
                 'phone'                 => $this->phone,
-                'subscription_date'     => $this->subscriptionDate,
-                'last_connection_date'  => $this->lastConnectionDate,
-                'subscription_ip'       => $this->subscriptionIp,
-                'privilege'             => $this->privilege
+                'subscription_date'     => $this->subscription_date,
+                'last_connection_date'  => $this->last_connection_date,
+                'subscription_ip'       => $this->subscription_ip,
+                'role'                  => $this->role
             );
             
             foreach($filterOut as $propertyName)

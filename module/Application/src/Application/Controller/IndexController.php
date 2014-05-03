@@ -6,6 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Model\User;
 use Application\Form\RegisterForm;
+use Application\Form\LoginForm;
 use Application\Filter\RegisterFilter;
 use Zend\Crypt\Password\Bcrypt;
 
@@ -37,7 +38,32 @@ class IndexController extends AbstractActionController
     public function loginAction()
     {
         $this->layout()->setVariable('activeTab', 'login');
-        return new ViewModel();
+        $form = new LoginForm();
+        
+        if($this->getRequest()->isPost())
+        {
+            $form->setData($this->getRequest()->getPost());
+            if($form->isValid())
+            {
+                $data = $form->getData();
+                $userData = $this->getUserTable()->login($data['email'],$data['password']);
+                if($userData)
+                {
+                    //everything O.K
+                    $this->getServiceLocator()->get('AuthService')->getStorage()->write($userData);
+
+                }
+                else
+                {
+                    //Login failed
+                    //TODO flash login failed message 
+                    echo "Login failed";
+                    die();
+                }
+            }
+        }
+                
+        return new ViewModel(array('form' => $form));
     }
     
     public function registerAction()
@@ -54,16 +80,30 @@ class IndexController extends AbstractActionController
             {
                 $user = new User();
                 $data = array_merge($form->getData(),
-                        array('subscriptionDate'       => time(),
-                              'lastConnectionDate'    => time(),
-                              'subscriptionIp'         => $_SERVER['REMOTE_ADDR']));
+                        array('subscription_date'       => time(),
+                              'last_connection_date'    => time(),
+                              'subscription_ip'         => $_SERVER['REMOTE_ADDR'],
+                              'role'                    => 'Customer'));
                 $bcrypt = new Bcrypt();
-                $data['password'] = $bcrypt->create($data['password']); //hashing password
+                $password = $data['password'];
+                $data['password'] = $bcrypt->create($password); //hashing password
                 $user->exchangeArray($data);
-                $this->getUserTable()->insert($user->returnArray(array('id','privilege')));
+                $this->getUserTable()->insert($user->returnArray(array('id')));
                 
-                //TODO autologin
                 
+                $userData = $this->getUserTable()->login($data['email'],$password);
+                if($userData)
+                {
+                    //everything O.K
+                    $this->getServiceLocator()->get('AuthService')->getStorage()->write($userData);
+                }
+                else
+                {
+                    //Subscription failed because of an unknown error
+                    //TODO flash error message to tell the customer to retry later
+                    echo "Subscription failed";
+                    die();
+                }
             }
         }
         return new ViewModel(array('form' => $form));

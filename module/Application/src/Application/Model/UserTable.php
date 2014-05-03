@@ -1,8 +1,9 @@
 <?php
 
 namespace Application\Model;
-use Zend\Db\TableGateway\TableGateway,
-    Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Crypt\Password\Bcrypt;
 
 class UserTable
 {
@@ -29,6 +30,17 @@ class UserTable
     public function insert($data)
     {
         $this->tableGateway->insert($data);
+    }
+    
+    public function login($email, $password)
+    {
+        $rowset = $this->tableGateway->select(array('email' => strtolower($email)));
+        $row = $rowset->current();
+        $bcrypt = new Bcrypt();
+        if($bcrypt->verify($password, $row->password))
+            return $row;
+        else
+            return null;
     }
     
 }
