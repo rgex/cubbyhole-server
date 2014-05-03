@@ -1,0 +1,32 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	ServerName cubbyhole-server
+
+	DocumentRoot /var/www/cubbyhole-server/public/
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride all
+	</Directory>
+	<Directory /var/www/cubbyhole-server/public/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride all
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+	<Directory "/usr/lib/cgi-bin">
+		AllowOverride all
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

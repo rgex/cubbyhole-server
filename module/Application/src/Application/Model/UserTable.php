@@ -37,10 +37,17 @@ class UserTable
         $rowset = $this->tableGateway->select(array('email' => strtolower($email)));
         $row = $rowset->current();
         $bcrypt = new Bcrypt();
-        if($bcrypt->verify($password, $row->password))
-            return $row;
+        if($row)
+        {
+            if($bcrypt->verify($password, $row->password))
+                return $row;
+            else
+                return null;
+        }
         else
+        {
             return null;
+        }
     }
     
 }

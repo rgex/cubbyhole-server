@@ -1,5 +1,10 @@
 <h1 class="page-header center-text"><?php echo $this->translate('Login'); ?></h1>
 
+<?php
+var_dump($this->messages);
+$this->partial('layout/flashMessage', array('messages' => $this->messages));
+?>
+
 <div class="form-container">
 
 <?php

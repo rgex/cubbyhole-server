@@ -21,13 +21,28 @@ class IndexController extends AbstractActionController
      * 
      * @return Application\Model\UserTable
      */
-    private function getUserTable() {
+    private function getUserTable()
+    {
         if(!isset($this->userTable))
         {
             $sm = $this->getServiceLocator();
             $this->userTable = $sm->get('Application\Model\UserTable');
         }
         return $this->userTable;
+    }
+    
+    /**
+     * 
+     * @param type $text
+     * @return Translator
+     */
+    private function getTranslator()
+    {
+        if(!isset($this->translator))
+        {
+            $this->translator = $this->getServiceLocator()->get('Translator');
+        }
+        return $this->translator;
     }
     
     public function indexAction()
@@ -55,15 +70,19 @@ class IndexController extends AbstractActionController
                 }
                 else
                 {
-                    //Login failed
-                    //TODO flash login failed message 
-                    echo "Login failed";
-                    die();
+                    //Login failed 
+                    $this->flashMessenger()->addErrorMessage(
+                            $this->getTranslator()->translate('Wrong email or password.')
+                            );
                 }
             }
         }
-                
-        return new ViewModel(array('form' => $form));
+        $messages = null;
+        var_dump($this->flashMessenger()->getCurrentMessages());
+        if($this->flashMessenger()->hasMessages())
+            $messages = $this->flashMessenger()->getMessages();
+        return new ViewModel(array('form'     => $form,
+                                   'messages' => $messages));
     }
     
     public function registerAction()
