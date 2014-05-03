@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2014 at 06:50 AM
+-- Generation Time: May 03, 2014 at 08:54 AM
 -- Server version: 5.1.73-1
--- PHP Version: 5.3.3-7+squeeze18
+-- PHP Version: 5.3.3-7+squeeze19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -96,15 +96,16 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(120) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `first_name` varchar(40) NOT NULL,
   `last_name` varchar(40) NOT NULL,
   `phone` varchar(30) NOT NULL,
   `subscription_date` int(22) NOT NULL COMMENT 'timestamp',
   `last_connection_date` int(22) NOT NULL,
   `subscription_ip` varchar(30) NOT NULL,
+  `role` enum('Admin','Support','BI','Customer') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
