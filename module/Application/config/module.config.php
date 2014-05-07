@@ -40,6 +40,16 @@ return array(
                     ),
                 ),
             ),
+            'logout' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/logout',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'logout',
+                    ),
+                ),
+            ),
             'captcha' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -92,7 +102,8 @@ return array(
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator',
-        ),
+            'Zend\Authentication\AuthenticationService' => 'AuthService',
+        )
     ),
     'translator' => array(
         'locale' => 'en_US',

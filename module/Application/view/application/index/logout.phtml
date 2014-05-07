@@ -1,0 +1,8 @@
+<h1 class="page-header center-text"><?php echo $this->translate('Logout'); ?></h1>
+
+<?php
+var_dump($this->messages);
+var_dump($this->identity());
+$this->partial('layout/flashMessage', array('messages' => $this->messages));
+?>
+

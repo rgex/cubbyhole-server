@@ -23,18 +23,20 @@ class AuthStorage extends Storage\Session
     public function read()
     {
         $contents = parent::read();
-        
+
         if(isset($contents->role))
             $this->role = $contents->role;
-        
+
         if(isset($contents->id))
             $this->id = $contents->id;
-        
+
         if(isset($contents->first_name))
             $this->firstName = $contents->first_name;
-        
+
          if(isset($contents->last_name))
             $this->lastName = $contents->last_name;
+
+        return $contents;
     }
     
     public function getRole()

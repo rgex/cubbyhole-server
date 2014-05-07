@@ -1,10 +1,28 @@
 <?php
 
-return array('guest'=> array('Index/login',
-                             'Index/index',
-                             'Index/register'),
+return array('guest'=>    array('Application\Controller\Index\login',
+                                'Application\Controller\Index\index',
+                                'Application\Controller\Index\register',
+                                'Application\Controller\Captcha\generate',
+
+             ),
     
-             'Customer'=> array('Index/login',
-                             'Index/index',
-                             'Index/register'),
+             'Customer'=> array('Application\Controller\Index\login',
+                                'Application\Controller\Index\index',
+                                'Application\Controller\Index\register',
+                                'Application\Controller\Index\logout',
+                                'Application\Controller\Captcha\generate',
+             ),
+
+             'Admin'=>    array('Application\Controller\Index\login',
+                                'Application\Controller\Index\index',
+                                'Application\Controller\Index\register',
+                                'Application\Controller\Index\logout',
+                                'Application\Controller\Captcha\generate',
+
+
+                                //Admin specific
+                                'Admin\Controller\Index\index',
+
+             ),
     );

@@ -2,14 +2,9 @@
 
 namespace Application\Helper;
 
-class LoginHelper
+class TableHelper
 {
     public function __construct()
-    {
-        
-    }
-    
-    public function checkLogin($email,$password)
     {
         
     }

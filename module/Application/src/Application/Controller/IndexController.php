@@ -9,6 +9,7 @@ use Application\Form\RegisterForm;
 use Application\Form\LoginForm;
 use Application\Filter\RegisterFilter;
 use Zend\Crypt\Password\Bcrypt;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 class IndexController extends AbstractActionController
 {
@@ -77,12 +78,8 @@ class IndexController extends AbstractActionController
                 }
             }
         }
-        $messages = null;
-        var_dump($this->flashMessenger()->getCurrentMessages());
-        if($this->flashMessenger()->hasMessages())
-            $messages = $this->flashMessenger()->getMessages();
-        return new ViewModel(array('form'     => $form,
-                                   'messages' => $messages));
+
+        return new ViewModel(array('form'     => $form));
     }
     
     public function registerAction()
@@ -126,5 +123,13 @@ class IndexController extends AbstractActionController
             }
         }
         return new ViewModel(array('form' => $form));
+    }
+
+    public function logoutAction()
+    {
+        $this->getServiceLocator()->get('AuthService')->clearIdentity();
+        $this->flashmessenger()->addSuccessMessage($this->getTranslator()->translate('You\'ve been logged out'));
+
+        return new ViewModel();
     }
 }

@@ -28,7 +28,6 @@ class Module
         $this->initAcl($e);
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        
 
     }
 
@@ -47,7 +46,7 @@ class Module
             ),
         );
     }
-    
+
     public function getServiceConfig()
     {
         return array('factories' => array(
@@ -72,11 +71,11 @@ class Module
             }
         ));
     }
-    
+
     public function authPreDispatch(MvcEvent $e)
     {
         $matches = $e->getRouteMatch();
-        
+
         if(!$matches instanceof RouteMatch)
         {
             return false;
@@ -86,29 +85,29 @@ class Module
         $sm   = $app->getServiceManager();
         $auth = $sm->get('AuthService');
         //if not connected and controller isn't the index controller -> redirect to login page
-        if(!$auth->hasIdentity() && $controller != 'Application\Controller\Index') 
+        if(!$auth->hasIdentity() && $controller != 'Application\Controller\Index')
         {
             $router = $e->getRouter();
             $url = $router->assemble(array(),array('name','login'));
-            
+
             $response = $e->getResponse();
             $response->getHeaders()->addHeaderLine('Location', $url);
             $response->setStatusCode(302);
         }
         return false;
     }
-    
+
     public function initAcl(MvcEvent $e)
     {
         $acl = new \Zend\Permissions\Acl\Acl();
         $roles = include __DIR__ . '/config/modules.acl.roles.php';
-        $allRessources = array();
+        $allResources = array();
         foreach($roles as $role => $resources)
         {
             $role = new \Zend\Permissions\Acl\Role\GenericRole($role);
             $acl->addRole($role);
-            $allRessources = array_merge($resources,$allRessources);
-            
+            $allResources = array_merge($resources,$allResources);
+
             //Resources
             foreach($resources as $resource)
             {
@@ -123,20 +122,18 @@ class Module
                 $acl->allow($role,$resource);
             }
         }
-        
+
         //setting to view
         $e->getViewModel()->acl = $acl;
     }
-    
+
     public function checkAcl(MvcEvent $e)
     {
         $matches = $e->getRouteMatch();
         $action = $matches->getParam('action');
-        
-        $controller = explode('\\',$matches->getParam('controller'));
-        $route = $controller[2] .'/'. $action;
-        
-        // read() get the data from the session and put them in the AuthStorage instance
+
+        $route = $matches->getParam('controller').'\\'. $action;
+
         $e->getApplication()->getServiceManager()->get('AuthService')->getStorage()->read();
         $role = $e->getApplication()->getServiceManager()->get('AuthService')->getStorage()->getRole();
         if(isset($role))
@@ -147,14 +144,14 @@ class Module
         {
             $userRole = 'guest';
         }
-        
-        if($e->getViewModel()->acl->hasResource($route)
-           || $e->getViewModel()->acl->isAllowed($userRole, $role))
+        if(!$e->getViewModel()->acl->hasResource($route)
+           || !$e->getViewModel()->acl->isAllowed($userRole, $route))
         {
             $response = $e->getResponse();
-            
+
             $response->getHeaders()->addHeaderLine('Location', $e->getRequest()->getBaseUrl() . '/404');
             $response->setStatusCode(401);
+            die("TODO");
         }
     }
 }

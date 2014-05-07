@@ -37,10 +37,33 @@
                     <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><!-- LOGO CUBBYHOLE --> &nbsp; CubbyHole</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li <?php if($this->activeTab == 'login'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('login') ?>"><?php echo $this->translate('Login') ?></a></li>
-                        <li <?php if($this->activeTab == 'register'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('register') ?>"><?php echo $this->translate('Register') ?></a></li>
-                    </ul>
+
+                        <?php
+                        if($user = $this->identity())
+                        {
+                            ?>
+                        <ul class="nav navbar-nav">
+                            <li <?php if($this->activeTab == 'home'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('login') ?>"><?php echo $this->translate('Home') ?></a></li>
+                        </ul>
+                        <ul class="pull-right navbar-text">
+
+                            <?php echo sprintf($this->translate('Welcome %s'),$user->first_name) ?>
+                            &nbsp;&nbsp;&nbsp;
+                            <a class="navbar-link" href="<?php echo $this->url('logout') ?>"><?php echo $this->translate('Logout') ?></a>
+                        </ul>
+                        <?php
+                        }
+                        else
+                        {
+                            ?>
+                        <ul class="nav navbar-nav">
+                            <li <?php if($this->activeTab == 'login'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('login') ?>"><?php echo $this->translate('Login') ?></a></li>
+                            <li <?php if($this->activeTab == 'register'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('register') ?>"><?php echo $this->translate('Register') ?></a></li>
+                        </ul>
+                        <?php
+                        }
+                        ?>
+
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
