@@ -80,3 +80,38 @@ form label span{
     /* Zend Error message */
     color:#ff2222;
 }
+
+.rightContent{
+    margin-left:100px; /* menuLeft.width +40 */
+    min-height:400px;
+}
+
+.menuLeft{
+    background-color:#ffffff;
+    width:60px;
+    position:fixed;
+
+}
+
+footer p{
+    text-align: center;
+}
+
+.menuLeftIcon{
+    font-size: 48px;
+    color:#222222;
+    margin-top: 4px;
+    display:block;
+}
+
+table .delete{
+    color:#222222;
+}
+
+table .edit{
+    color:#222222;
+}
+
+table th .active{
+    color:#ff0000;
+}

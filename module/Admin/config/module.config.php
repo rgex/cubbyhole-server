@@ -20,6 +20,29 @@ return array(
                     ),
                 ),
             ),
+            'adminUser' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/admin/user/',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\User',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'editUser' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/admin/user/edit/[:id]',
+                    'constraints' => array(
+                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\User',
+                        'action'     => 'edit',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -43,7 +66,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Admin\Controller\Index' => 'Admin\Controller\IndexController'
+            'Admin\Controller\Index'    => 'Admin\Controller\IndexController',
+            'Admin\Controller\User'     => 'Admin\Controller\UserController',
         ),
     ),
     'view_manager' => array(

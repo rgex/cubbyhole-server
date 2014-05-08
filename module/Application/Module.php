@@ -84,6 +84,7 @@ class Module
         $app  = $e->getApplication();
         $sm   = $app->getServiceManager();
         $auth = $sm->get('AuthService');
+        /*
         //if not connected and controller isn't the index controller -> redirect to login page
         if(!$auth->hasIdentity() && $controller != 'Application\Controller\Index')
         {
@@ -93,7 +94,7 @@ class Module
             $response = $e->getResponse();
             $response->getHeaders()->addHeaderLine('Location', $url);
             $response->setStatusCode(302);
-        }
+        }*/
         return false;
     }
 
@@ -151,7 +152,8 @@ class Module
 
             $response->getHeaders()->addHeaderLine('Location', $e->getRequest()->getBaseUrl() . '/404');
             $response->setStatusCode(401);
-            die("TODO");
+            header('Location: '.$e->getRouter()->assemble(array(),array('name'=>'login')),TRUE,301);
+            die();
         }
     }
 }

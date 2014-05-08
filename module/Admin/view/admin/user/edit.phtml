@@ -1,4 +1,4 @@
-<h1 class="page-header center-text"><?php echo $this->translate('Register'); ?></h1>
+<h1 class="page-header center-text"><?php echo $this->translate('Edit User'); ?></h1>
 
 <?php
 echo $this->partial('layout/flashMessage');
@@ -8,7 +8,7 @@ echo $this->partial('layout/flashMessage');
 
 <?php
 $this->headTitle($this->translate('register'));
-$this->form->setAttribute('action',$this->url('register'));
+$this->form->setAttribute('action',$this->url('editUser'));
 $this->form->setAttribute('class','form-horizontal');
 $this->form->prepare();
 echo $this->form()->openTag($this->form);

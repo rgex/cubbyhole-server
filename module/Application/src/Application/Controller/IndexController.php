@@ -68,6 +68,9 @@ class IndexController extends AbstractActionController
                     //everything O.K
                     $this->getServiceLocator()->get('AuthService')->getStorage()->write($userData);
 
+                    //if user is a admin we redirect him to admin home page
+                    if($userData->role == 'Admin')
+                        $this->redirect()->toRoute('adminIndex');
                 }
                 else
                 {
@@ -112,13 +115,15 @@ class IndexController extends AbstractActionController
                 {
                     //everything O.K
                     $this->getServiceLocator()->get('AuthService')->getStorage()->write($userData);
+                    //TODO redirect customer to his home page
+
                 }
                 else
                 {
                     //Subscription failed because of an unknown error
-                    //TODO flash error message to tell the customer to retry later
-                    echo "Subscription failed";
-                    die();
+                    $this->flashMessenger()->addErrorMessage(
+                        $this->getTranslator()->translate('Something went wrong please retry later.')
+                    );
                 }
             }
         }
@@ -128,7 +133,7 @@ class IndexController extends AbstractActionController
     public function logoutAction()
     {
         $this->getServiceLocator()->get('AuthService')->clearIdentity();
-        $this->flashmessenger()->addSuccessMessage($this->getTranslator()->translate('You\'ve been logged out'));
+        $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('You\'ve been logged out'));
 
         return new ViewModel();
     }

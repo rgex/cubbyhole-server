@@ -1,7 +1,7 @@
 <h1 class="page-header center-text"><?php echo $this->translate('Login'); ?></h1>
 
 <?php
-echo $this->flashMessenger()->renderCurrent('error', array('alert', 'alert-danger'));
+echo $this->partial('layout/flashMessage');
 ?>
 
 <div class="form-container">

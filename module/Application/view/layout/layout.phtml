@@ -14,7 +14,8 @@
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
                         ->prependStylesheet($this->basePath() . '/css/style.css')
                         ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/fontello.css') ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -43,7 +44,7 @@
                         {
                             ?>
                         <ul class="nav navbar-nav">
-                            <li <?php if($this->activeTab == 'home'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('login') ?>"><?php echo $this->translate('Home') ?></a></li>
+                            <li <?php if($this->activeTab == 'home'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('adminIndex') ?>"><?php echo $this->translate('Home') ?></a></li>
                         </ul>
                         <ul class="pull-right navbar-text">
 
