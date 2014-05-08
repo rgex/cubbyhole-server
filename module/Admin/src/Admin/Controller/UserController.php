@@ -4,7 +4,7 @@ namespace Admin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Helper\TableHelper;
+use Application\Helper\GridHelper;
 
 class UserController extends AbstractActionController
 {
@@ -39,7 +39,7 @@ class UserController extends AbstractActionController
     public function indexAction()
     {
         //new table helper
-        $tableHelper = new TableHelper($this->getServiceLocator()->get('UserTableGateway'));
+        $tableHelper = new GridHelper($this->getServiceLocator()->get('UserTableGateway'));
         $table = $tableHelper->getHtml(
             array('aliases'         =>  array('first_name'              =>  'First Name',
                                               'last_name'               =>  'Last Name',
