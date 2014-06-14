@@ -57,6 +57,10 @@ class GridHelper
         $editUrl            = isset($options['editUrl'])? $options['editUrl'] : null;
         $enableDelete       = isset($options['enableDelete'])? true : false;
 
+        if(isset($this->params['delete'])) {
+            $this->tableGateway->delete(' id = \''.$this->params['delete'].'\'');
+        }
+
         $rowset = $this->tableGateway->select(function(Select $select)
         {
 
@@ -142,7 +146,7 @@ class GridHelper
             if($enableDelete)
             {
                 $html.= '<td>';
-                $html.= '<a href="" class="delete"><span class="glyphicon glyphicon-trash"></span></a>';
+                $html.= '<a href="#" onclick="if(confirm(\'Êtes vous sûr de vouloir supprimer cet élément?\')) { document.location = \'?delete='.$row->id.'\';}" class="delete"><span class="glyphicon glyphicon-trash"></span></a>';
                 $html.= '</td>';
             }
 

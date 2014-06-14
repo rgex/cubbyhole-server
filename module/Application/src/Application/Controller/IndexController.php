@@ -9,7 +9,7 @@ use Application\Form\RegisterForm;
 use Application\Form\LoginForm;
 use Application\Filter\RegisterFilter;
 use Zend\Crypt\Password\Bcrypt;
-use Zend\Mvc\Controller\Plugin\FlashMessenger;
+use BitcoinPHP\BitcoinECDSA\BitcoinECDSA;
 
 class IndexController extends AbstractActionController
 {
