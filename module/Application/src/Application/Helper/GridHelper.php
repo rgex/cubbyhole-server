@@ -77,84 +77,126 @@ class GridHelper
             //Todo check $options for jointures
         });
 
-        $html.= '<table class="table table-striped">';
-        while($row = $rowset->current())
+        if(isset($this->params['exportAsCSV'])) //export as CSV
         {
-            if($isFirstLine)
+            header("Content-Disposition: inline; filename=report.csv");
+            header("Content-type: text/csv");
+
+            $csv = '';
+            while($row = $rowset->current())
             {
-                //if it is the first line we create the headers
-                $isFirstLine = false;
-                $html.= '<thead>';
+
+                if($isFirstLine)
+                {
+                    //if it is the first line we create the headers
+                    $isFirstLine = false;
+                    foreach($row as $key=>$field)
+                    {
+                        $alias = isset($aliases[$key])? $aliases[$key] : $key;
+                        $csv .= str_replace(",","\\,",$alias);
+                        $csv .= ',';
+                    }
+                    $csv .= "\n";
+                }
+
+                foreach($row as $key=>$field)
+                {
+                    if(isset($dataFormatter[$key]))
+                    {
+                        $field = $this->dataFormatter($field,$dataFormatter[$key]);
+                    }
+                    $csv .= str_replace("\n","",
+                        str_replace(",","\\,",$field));
+                    $csv .= ",";
+                }
+                $csv .= "\n";
+                $rowset->next();
+            }
+            $csv .= "\n";
+            echo $csv;
+            die();
+        }
+        else
+        {
+            $html.= '<table class="table table-striped">';
+            while($row = $rowset->current())
+            {
+                if($isFirstLine)
+                {
+                    //if it is the first line we create the headers
+                    $isFirstLine = false;
+                    $html.= '<thead>';
+                    $html.= '<tr>';
+                    foreach($row as $key=>$field)
+                    {
+                        if(!in_array($key,$filterOut))
+                        {
+                            $html.= '<th>';
+                            $html.= isset($aliases[$key])? $aliases[$key] : $key;
+                            $html.= '<div style="text-align: left;">';
+                            $html.= '<a href="'.$this->getUrl(array('order'=>'DESC','orderBy'=>$key)).'">';
+                            if(isset($this->params['order']) && $this->params['order'] == 'DESC'
+                                && $this->params['orderBy'] == $key)
+                                $html.= '<span class="active glyphicon glyphicon-chevron-down"></span>';
+                            else
+                                $html.= '<span class="glyphicon glyphicon-chevron-down"></span>';
+                            $html.= '</a>';
+                            $html.= '<a href="'.$this->getUrl(array('order'=>'ASC','orderBy'=>$key)).'">';
+                            if(isset($this->params['order']) && $this->params['order'] == 'ASC'
+                                && $this->params['orderBy'] == $key)
+                                $html.= '<span class="active glyphicon glyphicon-chevron-up"></span>';
+                            else
+                                $html.= '<span class="glyphicon glyphicon-chevron-up"></span>';
+                            $html.= '</a>';
+                            $html.= '</div>';
+                            $html.= '</th>';
+                        }
+                    }
+                    if($editUrl)    //append column for edit
+                        $html.= '<th></th>';
+                    if($enableDelete)    //append column for delete
+                        $html.= '<th></th>';
+
+                    $html.= '</tr>';
+                    $html.= '</thead>';
+                }
+
                 $html.= '<tr>';
                 foreach($row as $key=>$field)
                 {
+                    if(isset($dataFormatter[$key]))
+                    {
+                        $field = $this->dataFormatter($field,$dataFormatter[$key]);
+                    }
                     if(!in_array($key,$filterOut))
                     {
-                        $html.= '<th>';
-                        $html.= isset($aliases[$key])? $aliases[$key] : $key;
-                        $html.= '<div style="text-align: left;">';
-                        $html.= '<a href="'.$this->getUrl(array('order'=>'DESC','orderBy'=>$key)).'">';
-                        if(isset($this->params['order']) && $this->params['order'] == 'DESC'
-                            && $this->params['orderBy'] == $key)
-                            $html.= '<span class="active glyphicon glyphicon-chevron-down"></span>';
-                        else
-                            $html.= '<span class="glyphicon glyphicon-chevron-down"></span>';
-                        $html.= '</a>';
-                        $html.= '<a href="'.$this->getUrl(array('order'=>'ASC','orderBy'=>$key)).'">';
-                        if(isset($this->params['order']) && $this->params['order'] == 'ASC'
-                            && $this->params['orderBy'] == $key)
-                            $html.= '<span class="active glyphicon glyphicon-chevron-up"></span>';
-                        else
-                            $html.= '<span class="glyphicon glyphicon-chevron-up"></span>';
-                        $html.= '</a>';
-                        $html.= '</div>';
-                        $html.= '</th>';
+                        $html.= '<td>';
+                        $html.= $field;
+                        $html.= '</td>';
                     }
                 }
-                if($editUrl)    //append column for edit
-                    $html.= '<th></th>';
-                if($enableDelete)    //append column for delete
-                    $html.= '<th></th>';
 
-                $html.= '</tr>';
-                $html.= '</thead>';
-            }
-
-            $html.= '<tr>';
-            foreach($row as $key=>$field)
-            {
-                if(isset($dataFormatter[$key]))
+                if($editUrl)
                 {
-                    $field = $this->dataFormatter($field,$dataFormatter[$key]);
-                }
-                if(!in_array($key,$filterOut))
-                {
+                    $editUrl = str_replace(':s','%s',$editUrl);
                     $html.= '<td>';
-                    $html.= $field;
+                    $html.= '<a href="'.sprintf($editUrl,$row->id).'" class="edit"><span class="glyphicon glyphicon glyphicon-pencil"></span></a>';
                     $html.= '</td>';
                 }
+
+                if($enableDelete)
+                {
+                    $html.= '<td>';
+                    $html.= '<a href="#" onclick="if(confirm(\'Êtes vous sûr de vouloir supprimer cet élément?\')) { document.location = \'?delete='.$row->id.'\';}" class="delete"><span class="glyphicon glyphicon-trash"></span></a>';
+                    $html.= '</td>';
+                }
+
+                $html.= '</tr>';
+
+                $rowset->next();
             }
-
-            if($editUrl)
-            {
-                $editUrl = str_replace(':s','%s',$editUrl);
-                $html.= '<td>';
-                $html.= '<a href="'.sprintf($editUrl,$row->id).'" class="edit"><span class="glyphicon glyphicon glyphicon-pencil"></span></a>';
-                $html.= '</td>';
-            }
-
-            if($enableDelete)
-            {
-                $html.= '<td>';
-                $html.= '<a href="#" onclick="if(confirm(\'Êtes vous sûr de vouloir supprimer cet élément?\')) { document.location = \'?delete='.$row->id.'\';}" class="delete"><span class="glyphicon glyphicon-trash"></span></a>';
-                $html.= '</td>';
-            }
-
-            $html.= '</tr>';
-
-            $rowset->next();
+            $html.= '</table>';
         }
-        $html.= '</table>';
         return $html;
     }
 }

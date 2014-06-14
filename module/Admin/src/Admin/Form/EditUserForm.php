@@ -2,9 +2,8 @@
 
 namespace Admin\Form;
 
-use Zend\Captcha\Image as CaptchaImage;
-//use Zend\Form\Element;
-use Zend\Form\Element\Captcha;
+use Zend\Form\Element\Select;
+use Zend\Form\Element;
 use Zend\Form\Form;
 
 class EditUserForm extends Form
@@ -66,6 +65,14 @@ class EditUserForm extends Form
                              'label'    => 'Password'
                          )
             ));
+
+        $this->add(array('name' => 'role',
+            'type'     => 'Zend\Form\Element\Select',
+            'options'      => array(
+                'value_options' => array('Admin' => 'Admin','Customer' => 'Customer'),
+                'label'    => 'role'
+            )
+        ));
 
        $this->add(array('name' => 'save',
                          'attributes'   => array(

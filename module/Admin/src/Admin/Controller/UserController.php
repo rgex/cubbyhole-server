@@ -8,6 +8,7 @@ use Admin\Form\EditUserForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Helper\GridHelper;
+use Zend\Crypt\Password\Bcrypt;
 
 class UserController extends AbstractActionController
 {
@@ -81,7 +82,17 @@ class UserController extends AbstractActionController
             {
                 $user = new User();
                 $user->exchangeRow($this->getRequest()->getPost());
-                $this->getUserTable()->update($user->returnArray(), 'id = \''.$this->params()->fromRoute('id').'\'');
+                $filterOut = array();
+                if(empty($user->password))
+                {
+                    $filterOut = array('password');
+                }
+                else
+                {
+                    $bcrypt = new Bcrypt();
+                    $user->password = $bcrypt->create($user->password);
+                }
+                $this->getUserTable()->update($user->returnArray($filterOut), 'id = \''.$this->params()->fromRoute('id').'\'');
                 $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The user infos have been edited.'));
                 $this->redirect()->toRoute('adminUser');
             }

@@ -9,7 +9,6 @@ use Application\Form\RegisterForm;
 use Application\Form\LoginForm;
 use Application\Filter\RegisterFilter;
 use Zend\Crypt\Password\Bcrypt;
-use BitcoinPHP\BitcoinECDSA\BitcoinECDSA;
 
 class IndexController extends AbstractActionController
 {
@@ -76,7 +75,7 @@ class IndexController extends AbstractActionController
                 }
                 else
                 {
-                    //Login failed 
+                    //Login failed
                     $this->flashMessenger()->addErrorMessage(
                             $this->getTranslator()->translate('Wrong email or password.')
                             );
@@ -108,6 +107,7 @@ class IndexController extends AbstractActionController
                 $bcrypt = new Bcrypt();
                 $password = $data['password'];
                 $data['password'] = $bcrypt->create($password); //hashing password
+                $data['role'] = 'Customer';
                 $user->exchangeArray($data);
                 $this->getUserTable()->insert($user->returnArray(array('id')));
                 
