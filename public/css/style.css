@@ -115,3 +115,10 @@ table .edit{
 table th .active{
     color:#ff0000;
 }
+
+.form-container .saveBtn {
+    margin-left: 10px;
+}
+.form-container .cancelBtn {
+    margin-left: 150px;
+}

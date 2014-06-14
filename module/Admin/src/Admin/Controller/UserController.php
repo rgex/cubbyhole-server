@@ -2,6 +2,9 @@
 
 namespace Admin\Controller;
 
+use Application\Model\User;
+use Admin\Filter\EditUserFilter;
+use Admin\Form\EditUserForm;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Helper\GridHelper;
@@ -68,5 +71,26 @@ class UserController extends AbstractActionController
     public function editAction()
     {
 
+        $editUserFilter = new EditUserFilter($this->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
+        $form = new EditUserForm();
+        if($this->getRequest()->isPost()) {
+            $form->setInputFilter($editUserFilter->getInputFilter());
+            $form->setData($this->getRequest()->getPost());
+
+            if($form->isValid())
+            {
+                $user = new User();
+                $user->exchangeRow($this->getRequest()->getPost());
+                $this->getUserTable()->update($user->returnArray(), 'id = \''.$this->params()->fromRoute('id').'\'');
+                $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The user infos have been edited.'));
+                $this->redirect()->toRoute('adminUser');
+            }
+        }
+        else
+        {
+            $form->setInputFilter($editUserFilter->getInputFilter());
+            $form->setData($userData = $this->getUserTable()->getUserArray($this->params()->fromRoute('id'), array('password')));
+        }
+        return new ViewModel(array('form' => $form));
     }
 }

@@ -26,10 +26,23 @@ class UserTable
         $row = $rowset->current();
         return $row;
     }
+
+    public function getUserArray($id,$filterOut = array())
+    {
+        $row = $this->getUser($id);
+        $user = new User();
+        $user->exchangeRow($row);
+        return $user->returnArray($filterOut);
+    }
     
     public function insert($data)
     {
         $this->tableGateway->insert($data);
+    }
+
+    public function update($data,$where)
+    {
+        $this->tableGateway->update($data,$where);
     }
     
     public function login($email, $password)

@@ -8,7 +8,7 @@ echo $this->partial('layout/flashMessage');
 
 <?php
 $this->headTitle($this->translate('register'));
-$this->form->setAttribute('action',$this->url('editUser'));
+$this->form->setAttribute('action','');
 $this->form->setAttribute('class','form-horizontal');
 $this->form->prepare();
 echo $this->form()->openTag($this->form);
@@ -17,12 +17,9 @@ echo '<div class="input-row">'.$this->formRow($this->form->get('first_name')).'<
 echo '<div class="input-row">'.$this->formRow($this->form->get('last_name')).'</div>';
 echo '<div class="input-row">'.$this->formRow($this->form->get('email')).'</div>';
 echo '<div class="input-row">'.$this->formRow($this->form->get('password')).'</div>';
-echo '<div class="input-row">'.$this->formRow($this->form->get('password2')).'</div>';
 echo '<div class="input-row">'.$this->formRow($this->form->get('phone')).'</div>';
-echo '<div class="input-row"><label><span style="height:100px;">'.$this->translate('Please proove that you are a human').'</span>';
-echo $this->formCaptcha($this->form->get('captcha'));
-echo $this->formElementErrors($this->form->get('captcha')).'</label></div>';
-echo '<div>'.$this->formSubmit($this->form->get('submit')).'</div>';
+echo '<div><a href="'.$this->url('adminUser').'"><button type="button" class="btn btn-default cancelBtn">cancel</button></a>';
+echo $this->formSubmit($this->form->get('save')).'</div>';
 echo $this->form()->closeTag();
 ?>
 </div>

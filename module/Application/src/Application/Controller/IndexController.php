@@ -71,6 +71,8 @@ class IndexController extends AbstractActionController
                     //if user is a admin we redirect him to admin home page
                     if($userData->role == 'Admin')
                         $this->redirect()->toRoute('adminIndex');
+
+                    //TODO redirect non admin user to his home
                 }
                 else
                 {
@@ -108,7 +110,6 @@ class IndexController extends AbstractActionController
                 $data['password'] = $bcrypt->create($password); //hashing password
                 $user->exchangeArray($data);
                 $this->getUserTable()->insert($user->returnArray(array('id')));
-                
                 
                 $userData = $this->getUserTable()->login($data['email'],$password);
                 if($userData)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Form;
+namespace Admin\Form;
 
 use Zend\Captcha\Image as CaptchaImage;
 //use Zend\Form\Element;
@@ -67,11 +67,11 @@ class EditUserForm extends Form
                          )
             ));
 
-       $this->add(array('name' => 'submit',
+       $this->add(array('name' => 'save',
                          'attributes'   => array(
                              'type'     => 'submit',
-                             'value'    => 'Register',
-                             'class'    => 'btn btn-primary'
+                             'value'    => 'Save',
+                             'class'    => 'btn btn-primary saveBtn'
                          )
             ));
     }
