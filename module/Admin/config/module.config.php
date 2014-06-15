@@ -25,7 +25,7 @@ return array(
                 'options' => array(
                     'route'    => '/admin/user/edit/[:id]',
                     'constraints' => array(
-                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                        'id' => '[0-9]{1,}'
                     ),
                     'defaults' => array(
                         'controller' => 'Admin\Controller\User',
@@ -48,7 +48,7 @@ return array(
                 'options' => array(
                     'route'    => '/admin/offer/edit/[:id]',
                     'constraints' => array(
-                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                        'id' => '[0-9]{1,}'
                     ),
                     'defaults' => array(
                         'controller' => 'Admin\Controller\Offer',
@@ -81,7 +81,7 @@ return array(
                 'options' => array(
                     'route'    => '/admin/worker/edit/[:id]',
                     'constraints' => array(
-                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                        'id' => '[0-9]{1,}'
                     ),
                     'defaults' => array(
                         'controller' => 'Admin\Controller\Worker',

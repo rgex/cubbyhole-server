@@ -1,9 +1,17 @@
 <?php
-echo $this->partial('layout/menuLeftCustomer');
+if(isset($this->token)) {
+    echo $this->partial('layout/menuLeftCustomer');
+    echo '<div class="rightContent">';
+    echo '<h1 class="page-header center-text">'.$this->translate('Files').'</h1>';
+}
+else
+{
+    echo '<h1 class="page-header center-text">'.$this->translate($this->userInfos->first_name.'\'s Files').'</h1>';
+}
 ?>
 
-<div class="rightContent">
-<h1 class="page-header center-text"><?php echo $this->translate('Files'); ?></h1>
+
+
 <?php
 echo $this->partial('layout/flashMessage');
 ?>
@@ -12,4 +20,47 @@ echo $this->partial('layout/flashMessage');
 $this->headTitle($this->translate('Files'));
 ?>
 
-</div>
+    <script>
+        currentPath = new Array(); //stack like
+        <?php if(isset($this->token)) { ?>
+            token = '<?php echo $this->token ?>';
+        <?php } ?>
+        userId = '<?php echo $this->userInfos->id; ?>';
+        wsUrl = '<?php echo $this->worker->ws1; ?>';
+        downloadUrl = '<?php echo $this->worker->ws2; ?>';
+    </script>
+    <script src="<?php echo $this->basePath(); ?>/js/jquery.form.js"></script>
+    <script src="<?php echo $this->basePath(); ?>/js/webapp.js"></script>
+
+    <br/>
+    <div class="content">
+        <div class="actionTab">
+            <button onclick="createFolder(); return false;"><img src="<?php echo $this->basePath(); ?>/img/folder.gif"> New Folder</button> &nbsp;
+            <button onclick="displayUpload(); return false;"><img src="<?php echo $this->basePath(); ?>/img/upload.png"> Upload file</button>
+        </div>
+
+        <div class="upload">
+
+        </div>
+        <br/>
+        <div class="uploadProgress">
+            Envoi du fichier ( <span class="percentage">0%</span> ) ...
+            <br/>
+            <div class="progress progress-striped active">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                </div>
+            </div>
+        </div>
+        <br/>
+        <ol class="navTab breadcrumb">
+
+        </ol>
+        <div class='fileExplorer'>
+
+        </div>
+    </div>
+<?php
+if(isset($this->token)) {
+    echo '</div>';
+}
+?>

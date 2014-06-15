@@ -136,3 +136,96 @@ table th .active{
     width: 190px;
     height: 150px;
 }
+
+
+/*****
+ *
+ *  WEBAPP
+ *
+ */
+
+.content {
+    width: 810px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.fileExplorer .element {
+    margin-bottom: 2px;
+}
+
+.fileExplorer .element .public {
+    display: block;
+    width : 30px;
+    max-width : 30px;
+    min-width : 30px;
+    float: left;
+}
+
+.fileExplorer .element .type {
+    display: block;
+    width : 40px;
+    max-width : 40px;
+    float: left;
+}
+
+.fileExplorer .element .name {
+    display: block;
+    width : 550px;
+    max-width : 550px;
+    float: left;
+}
+
+.fileExplorer .element .delete {
+    display: block;
+    width : 30px;
+    max-width : 30px;
+    float: left;
+}
+
+.fileExplorer .element .download {
+    display: block;
+    width : 30px;
+    max-width : 30px;
+    float: left;
+}
+
+.fileExplorer .element .size {
+    display: block;
+    width : 70px;
+    max-width : 70px;
+    float: left;
+    text-align :right;
+}
+
+.fileExplorer .element:hover {
+    background-color: #f5f5f5;
+}
+
+.uploadProgress {
+    display: none;
+}
+
+.fermer {
+    float:right;
+    padding-right: 50px;
+}
+
+.upload {
+    margin-top: 20px;
+    display: none;
+}
+
+.fermer a{
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+/*
+.fileExplorer .element-0 {
+
+}
+.fileExplorer .element-1 {
+    background-color: #f5f5f5;
+}*/

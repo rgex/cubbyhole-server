@@ -88,7 +88,7 @@ return array(
                 'options' => array(
                     'route'    => '/customer/files/[:id]',
                     'constraints' => array(
-                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                        'id' => '[0-9]{1,}'
                     ),
                     'defaults' => array(
                         'controller' => 'Application\Controller\Customer',

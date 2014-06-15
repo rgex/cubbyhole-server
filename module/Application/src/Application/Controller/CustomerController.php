@@ -99,9 +99,18 @@ class CustomerController extends AbstractActionController
 
     public function filesAction()
     {
-        var_dump($this->getWorkerTable()->getActiveWorker());
-        var_dump($this->getTokenTable()->getOrCreateToken($this->identity()->id));
-        return new ViewModel();
+        $worker = $this->getWorkerTable()->getActiveWorker();
+        $userId = $this->params()->fromRoute('id');
+        $userInfos = $this->getUserTable()->getUser($userId);
+        if(isset($this->identity()->id) && $this->identity()->id == $this->params()->fromRoute('id'))
+            $token  = $this->getTokenTable()->getOrCreateToken($this->identity()->id);
+        else
+            $token = null;
+        if(!$userInfos)
+            die('user not found');
+        return new ViewModel(array('worker'     => $worker,
+                                   'token'      => $token,
+                                   'userInfos'  => $userInfos));
     }
 
 }

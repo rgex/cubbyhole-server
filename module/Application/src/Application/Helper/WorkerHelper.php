@@ -7,5 +7,8 @@ use Zend\Db\TableGateway\TableGateway;
 
 class WorkerHelper
 {
+    public function createUser($id)
+    {
 
+    }
 }
