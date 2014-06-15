@@ -5,6 +5,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Index\register',
                                 'Application\Controller\Captcha\generate',
                                 'Application\Controller\Index\offer',
+                                'Application\Controller\Customer\files',
 
              ),
     
@@ -14,6 +15,9 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Index\logout',
                                 'Application\Controller\Captcha\generate',
                                 'Application\Controller\Index\offer',
+                                'Application\Controller\Customer\index',
+                                'Application\Controller\Customer\offers',
+                                'Application\Controller\Customer\files',
              ),
 
              'Admin'=>    array('Application\Controller\Index\login',

@@ -11,6 +11,8 @@ namespace Application;
 
 use Application\Model\Offer;
 use Application\Model\OfferTable;
+use Application\Model\Token;
+use Application\Model\TokenTable;
 use Application\Model\Worker;
 use Application\Model\WorkerTable;
 use Zend\Mvc\ModuleRouteListener;
@@ -86,6 +88,17 @@ class Module
                     $resultSetAdapter = new ResultSet();
                     $resultSetAdapter->setArrayObjectPrototype(new Worker());
                     return new TableGateway('workers',$dbAdapter,null,$resultSetAdapter);
+            },
+            'Application\Model\TokenTable' => function($sm){
+                    $tableGateway = $sm->get('TokenTableGateway');
+                    $table = new TokenTable($tableGateway);
+                    return $table;
+            },
+            'TokenTableGateway' => function($sm){
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetAdapter = new ResultSet();
+                    $resultSetAdapter->setArrayObjectPrototype(new Token());
+                    return new TableGateway('tokens',$dbAdapter,null,$resultSetAdapter);
             },
             'Application\Model\AuthStorage' => function($sm){
                 return new Model\AuthStorage();

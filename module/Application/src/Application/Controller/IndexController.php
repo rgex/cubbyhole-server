@@ -37,12 +37,12 @@ class IndexController extends AbstractActionController
      */
     private function getOfferTable()
     {
-        if(!isset($this->userTable))
+        if(!isset($this->offerTable))
         {
             $sm = $this->getServiceLocator();
-            $this->userTable = $sm->get('Application\Model\OfferTable');
+            $this->offerTable = $sm->get('Application\Model\OfferTable');
         }
-        return $this->userTable;
+        return $this->offerTable;
     }
     
     /**
@@ -130,6 +130,7 @@ class IndexController extends AbstractActionController
                 $data['password'] = $bcrypt->create($password); //hashing password
                 $data['role'] = 'Customer';
                 $data['offer_id'] = 1;      //free offer
+                $data['expire'] = 0;
                 $user->exchangeArray($data);
                 $this->getUserTable()->insert($user->returnArray(array('id')));
                 

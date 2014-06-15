@@ -1,6 +1,7 @@
 <?php
 
 namespace Application\Model;
+use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Crypt\Password\Bcrypt;
@@ -30,9 +31,9 @@ class WorkerTable
     public function getWorkerArray($id,$filterOut = array())
     {
         $row = $this->getWorker($id);
-        $user = new Worker();
-        $user->exchangeRow($row);
-        return $user->returnArray($filterOut);
+        $worker = new Worker();
+        $worker->exchangeRow($row);
+        return $worker->returnArray($filterOut);
     }
     
     public function insert($data)
@@ -43,6 +44,14 @@ class WorkerTable
     public function update($data,$where)
     {
         $this->tableGateway->update($data,$where);
+    }
+
+    public function getActiveWorker()
+    {
+        $select = new Select(array('status' => 'up'));
+        $select->order('last_update DESC')->limit(1);
+        $resultSet = $this->tableGateway->select($select);
+        return $resultSet->current();
     }
     
 }

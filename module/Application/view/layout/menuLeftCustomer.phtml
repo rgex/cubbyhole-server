@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    $(function () {
+        $("[rel='tooltip']").tooltip();
+    });
+</script>
+
+<div class="menuLeft">
+    <a rel="tooltip" href="<?php echo $this->url('customerIndex'); ?>" data-toggle="tooltip" data-placement="right" title="My Account">
+        <i class="icon-users menuLeftIcon"></i></a><br/>
+    <a rel="tooltip" href="<?php echo $this->url('customerOffers'); ?>" data-toggle="tooltip" data-placement="right" title="Offers">
+        <i class="icon-briefcase menuLeftIcon"></i></a><br/>
+    <a rel="tooltip" href="<?php echo $this->url('customerFiles').$this->identity()->id; ?>" data-toggle="tooltip" data-placement="right" title="My Files">
+        <i class="icon-network menuLeftIcon"></i></a><br/>
+</div>

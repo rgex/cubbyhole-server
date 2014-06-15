@@ -63,6 +63,39 @@ return array(
                     ),
                 ),
             ),
+            'customerIndex' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/customer/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Customer',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'customerOffers' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/customer/offers/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Customer',
+                        'action'     => 'offers',
+                    ),
+                ),
+            ),
+            'customerFiles' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/customer/files/[:id]',
+                    'constraints' => array(
+                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Customer',
+                        'action'     => 'files',
+                    ),
+                ),
+            ),
             'captcha' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -131,7 +164,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Captcha' => 'Application\Controller\CaptchaController'
+            'Application\Controller\Captcha' => 'Application\Controller\CaptchaController',
+            'Application\Controller\Customer' => 'Application\Controller\CustomerController'
         ),
     ),
     'view_manager' => array(

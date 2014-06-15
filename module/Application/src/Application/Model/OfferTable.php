@@ -49,9 +49,9 @@ class OfferTable
     public function getOfferArray($id,$filterOut = array())
     {
         $row = $this->getOffer($id);
-        $user = new Offer();
-        $user->exchangeRow($row);
-        return $user->returnArray($filterOut);
+        $offer = new Offer();
+        $offer->exchangeRow($row);
+        return $offer->returnArray($filterOut);
     }
     
     public function insert($data)

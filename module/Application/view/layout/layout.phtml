@@ -44,7 +44,14 @@
                         {
                             ?>
                         <ul class="nav navbar-nav">
-                            <li <?php if($this->activeTab == 'home'){ echo 'class="active"'; } ?>><a href="<?php echo $this->url('adminIndex') ?>"><?php echo $this->translate('Home') ?></a></li>
+                            <li <?php if($this->activeTab == 'home'){ echo 'class="active"'; } ?>>
+                                <?php if($user->role == 'Admin') { ?>
+                                    <a href="<?php echo $this->url('stats') ?>"><?php echo $this->translate('Home') ?></a></li>
+                                <?php } ?>
+
+                                <?php if($user->role == 'Customer') { ?>
+                                    <a href="<?php echo $this->url('customerIndex') ?>"><?php echo $this->translate('Home') ?></a></li>
+                                <?php } ?>
                         </ul>
                         <ul class="pull-right navbar-text">
 
