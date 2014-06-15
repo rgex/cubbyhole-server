@@ -10,6 +10,9 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 //webservice
                                 'Application\Controller\Ws\getUserWithToken',
                                 'Application\Controller\Ws\updateDiskSpace',
+
+                                //cronjob
+                                'Application\Controller\Cronjob\updateWorkers',
              ),
     
              'Customer'=> array('Application\Controller\Index\login',

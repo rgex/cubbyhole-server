@@ -1,6 +1,8 @@
 <?php
 
 namespace Application\Model;
+use Zend\Db\Sql\Expression;
+use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Crypt\Password\Bcrypt;
@@ -81,6 +83,16 @@ class UserTable
         $data = $user->returnArray();
         $data['nbr_of_files'] += $nbrOfFiles;
         $this->tableGateway->update($data,'id = '.$userId);
+    }
+
+    public function count($condition = '1 = 1')
+    {
+        $this->condition = $condition;
+        $row = $this->tableGateway->select(function (Select $select){
+            $select->columns(array('count'=>new Expression('COUNT(id)')));
+            $select->where($this->condition);
+        });
+        return $row->current()->count;
     }
     
 }

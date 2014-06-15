@@ -19,7 +19,7 @@ echo $this->partial('layout/flashMessage');
     echo '<div class="input-row">'.$this->formRow($this->form->get('location')).'</div>';
     echo '<div class="input-row">'.$this->formRow($this->form->get('ws1')).'</div>';
     echo '<div class="input-row">'.$this->formRow($this->form->get('ws2')).'</div>';
-    echo '<div><a href="'.$this->url('adminOffer').'"><button type="button" class="btn btn-default cancelBtn">cancel</button></a>';
+    echo '<div><a href="'.$this->url('adminWorker').'"><button type="button" class="btn btn-default cancelBtn">cancel</button></a>';
     echo $this->formSubmit($this->form->get('save')).'</div>';
     echo $this->form()->closeTag();
     ?>

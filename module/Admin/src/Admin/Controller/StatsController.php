@@ -26,6 +26,49 @@ class StatsController extends AbstractActionController
         return $this->userTable;
     }
 
+    /**
+     *
+     * @return Application\Model\TokenTable
+     */
+    private function getTokenTable()
+    {
+        if(!isset($this->tokenTable))
+        {
+            $sm = $this->getServiceLocator();
+            $this->tokenTable = $sm->get('Application\Model\TokenTable');
+        }
+        return $this->tokenTable;
+    }
+
+    /**
+     *
+     * @return Application\Model\WorkerTable
+     */
+    private function getWorkerTable()
+    {
+        if(!isset($this->workerTable))
+        {
+            $sm = $this->getServiceLocator();
+            $this->workerTable = $sm->get('Application\Model\WorkerTable');
+        }
+        return $this->workerTable;
+    }
+
+    /**
+     *
+     * @return Application\Model\OfferTable
+     */
+    private function getOfferTable()
+    {
+        if(!isset($this->offerTable))
+        {
+            $sm = $this->getServiceLocator();
+            $this->offerTable = $sm->get('Application\Model\OfferTable');
+        }
+        return $this->offerTable;
+    }
+
+
     private function getTranslator()
     {
         if(!isset($this->translator))
@@ -37,6 +80,30 @@ class StatsController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel();
+        $offersCount            = $this->getOfferTable()->count();
+        $usersCount             = $this->getUserTable()->count();
+        $newUsersToday          = $this->getUserTable()->count('subscription_date > '.(time()-(24*3600)));
+        $newUsersThisWeek       = $this->getUserTable()->count('subscription_date > '.(time()-(7*24*3600)));
+        $newUsersThisMonth      = $this->getUserTable()->count('subscription_date > '.(time()-(30*24*3600)));
+
+        $activeWorkersCount     = $this->getWorkerTable()->count('status = \'up\'');
+        $inActiveWorkersCount   = $this->getWorkerTable()->count('status = \'down\'');
+
+        $activeWorker           = $this->getWorkerTable()->getActiveWorker();
+
+        $freeSpace              = $activeWorker->free_space_bytes;
+        $usedSpace              = $activeWorker->used_space_bytes;
+
+        return new ViewModel(array('offersCount'            => $offersCount,
+                                   'usersCount'             => $usersCount,
+                                   'newUsersToday'          => $newUsersToday,
+                                   'newUsersThisWeek'       => $newUsersThisWeek,
+                                   'newUsersThisMonth'      => $newUsersThisMonth,
+                                   'activeWorkersCount'     => $activeWorkersCount,
+                                   'inActiveWorkersCount'   => $inActiveWorkersCount,
+                                   'activeWorker'           => $activeWorker,
+                                   'freeSpace'              => $freeSpace,
+                                   'usedSpace'              => $usedSpace
+        ));
     }
 }

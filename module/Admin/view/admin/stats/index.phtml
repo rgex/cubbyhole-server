@@ -1,3 +1,35 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->basePath(); ?>/css/jquery.jqplot.min.css" />
+<script>
+    $(document).ready(function () {
+        var data = [
+            ['used', <?php echo round($this->usedSpace/1000000)/1000; ?>],
+            ['free', <?php echo round($this->freeSpace/1000000)/1000; ?>]
+        ];
+
+        jQuery.jqplot('chartDiskUsage', [data],
+            {
+                seriesDefaults: {
+// Make this a pie chart.
+                    renderer: jQuery.jqplot.PieRenderer,
+                    rendererOptions: {
+// Put data labels on the pie slices.
+// By default, labels show the percentage of the slice.
+                        showDataLabels: true
+                    }
+                },
+                legend: { show: true, location: 'e' },
+                title: 'San Disk Usage'
+            }
+        );
+    });
+</script>
+
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/shCore.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/shBrushJScript.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/shBrushXml.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/jqplot.pieRenderer.min.js"></script>
+
 <?php
 echo $this->partial('layout/menuLeftAdmin');
 ?>
@@ -11,28 +43,32 @@ $this->headTitle($this->translate('System Overview'));
 
 echo '<h1 class="page-header center-text">'.$this->translate('System Overview').'</h1>';
 echo '<br/>';
-echo '<b>'.$this->translate('Registered users : 10').'</b>';
+echo '<b>'.$this->translate('Registered users : '.$this->usersCount).'</b>';
 echo '<br/>';
-echo '<b>'.$this->translate('Offers : 10').'</b>';
+echo '<b>'.$this->translate('Offers : '.$this->offersCount).'</b>';
 echo '<br/>';
 
 echo '<h1 class="page-header center-text">'.$this->translate('System Healthy').'</h1>';
-echo '<b>TODO JPLOT</b>';
+echo '<b>Disk usage : '.(round($this->usedSpace/1000000)/1000).' / '.(round($this->usedSpace/1000000)/1000 + round($this->freeSpace/1000000)/1000).' GB</b><br/>';
+?>
+<div id="chartDiskUsage" style="height: 300px; width: 500px; position: relative; margin-left: auto; margin-right: auto;" class="jqplot-target">
+</div>
+<?php
 echo '<br/>';
 
 echo '<h1 class="page-header center-text">'.$this->translate('Today').'</h1>';
 echo '<br/>';
-echo '<b>'.$this->translate('New Customers : 10').'</b>';
+echo '<b>'.$this->translate('New Customers : '.$this->newUsersToday).'</b>';
 echo '<br/>';
 
 echo '<h1 class="page-header center-text">'.$this->translate('This week').'</h1>';
 echo '<br/>';
-echo '<b>'.$this->translate('New Customers : 10').'</b>';
+echo '<b>'.$this->translate('New Customers : '.$this->newUsersThisWeek).'</b>';
 echo '<br/>';
 
 echo '<h1 class="page-header center-text">'.$this->translate('This month').'</h1>';
 echo '<br/>';
-echo '<b>'.$this->translate('New Customers : 10').'</b>';
+echo '<b>'.$this->translate('New Customers : '.$this->newUsersThisMonth).'</b>';
 echo '<br/>';
 
 ?>

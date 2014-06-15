@@ -186,7 +186,8 @@ return array(
             'Application\Controller\Index'      => 'Application\Controller\IndexController',
             'Application\Controller\Captcha'    => 'Application\Controller\CaptchaController',
             'Application\Controller\Customer'   => 'Application\Controller\CustomerController',
-            'Application\Controller\Ws'         => 'Application\Controller\WsController'
+            'Application\Controller\Ws'         => 'Application\Controller\WsController',
+            'Application\Controller\Cronjob'    => 'Application\Controller\CronjobController'
         ),
     ),
     'view_manager' => array(
@@ -212,7 +213,16 @@ return array(
     'console' => array(
         'router' => array(
             'routes' => array(
-            ),
-        ),
-    ),
+                'cronroute' => array(
+                    'options' => array(
+                        'route'    => 'updateWorkers',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Cronjob',
+                            'action' => 'updateWorkers'
+                        )
+                    )
+                )
+            )
+        )
+    )
 );

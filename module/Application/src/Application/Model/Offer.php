@@ -5,6 +5,7 @@ namespace Application\Model;
 class Offer
 {
     public $id;
+    public $count;
     public $position_priority;
     public $month_price;
     public $size_go;
@@ -19,6 +20,7 @@ class Offer
     public function exchangeRow($data)
     {
         $this->id                           = (isset($data->id)) ? $data->id : null;
+        $this->count                        = (isset($data->count)) ? $data->count : null;
         $this->position_priority            = (isset($data->position_priority)) ? strtolower($data->position_priority) : null;
         $this->month_price                  = (isset($data->month_price)) ? $data->month_price : null;
         $this->size_go                      = (isset($data->size_go)) ? $data->size_go : null;
@@ -34,6 +36,7 @@ class Offer
     public function exchangeArray(Array $data)
     {
         $this->id                           = (isset($data['id'])) ? $data['id'] : null;
+        $this->count                        = (isset($data['count'])) ? strtolower($data['count']) : null;
         $this->position_priority            = (isset($data['position_priority'])) ? strtolower($data['position_priority']) : null;
         $this->month_price                  = (isset($data['month_price'])) ? $data['month_price'] : null;
         $this->size_go                      = (isset($data['size_go'])) ? $data['size_go'] : null;
@@ -50,6 +53,7 @@ class Offer
     {
             $array = array(
                 'id'                        => $this->id,
+                'count'                     => $this->count,
                 'position_priority'         => $this->position_priority,
                 'month_price'               => $this->month_price,
                 'size_go'                   => $this->size_go,

@@ -5,6 +5,7 @@ namespace Application\Model;
 class User
 {
     public $id;
+    public $count;
     public $email;
     public $password;
     public $first_name;
@@ -22,6 +23,7 @@ class User
     public function exchangeRow($data)
     {
         $this->id                       = (isset($data->id)) ? $data->id : null;
+        $this->count                    = (isset($data->count)) ? $data->count : null;
         $this->email                    = (isset($data->email)) ? strtolower($data->email) : null;
         $this->password                 = (isset($data->password)) ? $data->password : null;
         $this->first_name               = (isset($data->first_name)) ? $data->first_name : null;
@@ -40,6 +42,7 @@ class User
     public function exchangeArray(Array $data)
     {
         $this->id                       = (isset($data['id'])) ? $data['id'] : null;
+        $this->count                    = (isset($data['count'])) ? $data['count'] : null;
         $this->email                    = (isset($data['email'])) ? strtolower($data['email']) : null;
         $this->password                 = (isset($data['password'])) ? $data['password'] : null;
         $this->first_name               = (isset($data['first_name'])) ? $data['first_name'] : null;
@@ -59,6 +62,7 @@ class User
     {
             $array = array(
                 'id'                    => $this->id,
+                'count'                 => $this->count,
                 'email'                 => $this->email,
                 'password'              => $this->password,
                 'first_name'            => $this->first_name,

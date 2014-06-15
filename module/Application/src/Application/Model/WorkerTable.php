@@ -1,6 +1,7 @@
 <?php
 
 namespace Application\Model;
+use Zend\Db\Sql\Expression;
 use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
@@ -52,6 +53,16 @@ class WorkerTable
         $select->order('last_update DESC')->limit(1);
         $resultSet = $this->tableGateway->select($select);
         return $resultSet->current();
+    }
+
+    public function count($condition = '1 = 1')
+    {
+        $this->condition = $condition;
+        $row = $this->tableGateway->select(function (Select $select){
+            $select->columns(array('count'=>new Expression('COUNT(id)')));
+            $select->where($this->condition);
+        });
+        return $row->current()->count;
     }
     
 }

@@ -34,6 +34,23 @@ class WorkerHelper
         curl_setopt($ch,CURLOPT_URL, $url);
         curl_setopt($ch,CURLOPT_POST, count($fields));
         curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        //execute post
+        $result = curl_exec($ch);
+
+        //close connection
+        curl_close($ch);
+        return $result;
+    }
+
+    public function pingWorker($url)
+    {
+        //open connection
+        $ch = curl_init();
+
+        curl_setopt($ch,CURLOPT_URL, $url.'getSanSpace');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         //execute post
         $result = curl_exec($ch);

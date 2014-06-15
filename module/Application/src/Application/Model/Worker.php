@@ -5,6 +5,7 @@ namespace Application\Model;
 class Worker
 {
     public $id;
+    public $count;
     public $location;
     public $ws1;
     public $ws2;
@@ -17,6 +18,7 @@ class Worker
     public function exchangeRow($data)
     {
         $this->id                           = (isset($data->id)) ? $data->id : null;
+        $this->count                        = (isset($data->count)) ? $data->count : null;
         $this->location                     = (isset($data->location)) ? strtolower($data->location) : null;
         $this->ws1                          = (isset($data->ws1)) ? $data->ws1 : null;
         $this->ws2                          = (isset($data->ws2)) ? $data->ws2 : null;
@@ -30,6 +32,7 @@ class Worker
     public function exchangeArray(Array $data)
     {
         $this->id                           = (isset($data['id'])) ? $data['id'] : null;
+        $this->count                        = (isset($data['count'])) ? $data['count'] : null;
         $this->location                     = (isset($data['location'])) ? strtolower($data['location']) : null;
         $this->ws1                          = (isset($data['ws1'])) ? $data['ws1'] : null;
         $this->ws2                          = (isset($data['ws2'])) ? $data['ws2'] : null;
@@ -44,6 +47,7 @@ class Worker
     {
             $array = array(
                 'id'                        => $this->id,
+                'count'                     => $this->count,
                 'location'                  => $this->location,
                 'ws1'                       => $this->ws1,
                 'ws2'                       => $this->ws2,

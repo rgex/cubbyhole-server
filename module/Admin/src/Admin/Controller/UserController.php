@@ -66,6 +66,8 @@ class UserController extends AbstractActionController
                                               'last_connection_date'    =>  'Last Connection Date',
                                               'email'                   =>  'E-mail',
                                               'offer_id'                =>  'Offer ID',
+                                              'nbr_of_files'            =>  'Number of files',
+                                              'space_used_in_bytes'     =>  'Space used in bytes',
                                              ),
 
                   'dataFormatter'   =>  array('subscription_date'       =>'dateFromTimestamp',
