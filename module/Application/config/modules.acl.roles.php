@@ -26,5 +26,9 @@ return array('guest'=>    array('Application\Controller\Index\login',
 
                                 'Admin\Controller\User\index',
                                 'Admin\Controller\User\edit',
+
+                                'Admin\Controller\Offer\index',
+                                'Admin\Controller\Offer\new',
+                                'Admin\Controller\Offer\edit',
              ),
     );

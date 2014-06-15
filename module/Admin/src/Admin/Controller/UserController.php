@@ -82,10 +82,10 @@ class UserController extends AbstractActionController
             {
                 $user = new User();
                 $user->exchangeRow($this->getRequest()->getPost());
-                $filterOut = array();
+                $filterOut = array('subscription_date','last_connection_date','subscription_ip','offer_id','expire');
                 if(empty($user->password))
                 {
-                    $filterOut = array('password');
+                    $filterOut[] = 'password';
                 }
                 else
                 {
@@ -93,14 +93,16 @@ class UserController extends AbstractActionController
                     $user->password = $bcrypt->create($user->password);
                 }
                 $this->getUserTable()->update($user->returnArray($filterOut), 'id = \''.$this->params()->fromRoute('id').'\'');
-                $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The user infos have been edited.'));
+                $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The user has been edited.'));
                 $this->redirect()->toRoute('adminUser');
             }
         }
         else
         {
             $form->setInputFilter($editUserFilter->getInputFilter());
-            $form->setData($userData = $this->getUserTable()->getUserArray($this->params()->fromRoute('id'), array('password')));
+            $form->setData($userData = $this->getUserTable()->getUserArray($this->params()->fromRoute('id'), array('password',
+                                                                                                                   'subscription_date',
+                                                                                                                   'last_connection_date')));
         }
         return new ViewModel(array('form' => $form));
     }

@@ -122,3 +122,17 @@ table th .active{
 .form-container .cancelBtn {
     margin-left: 150px;
 }
+
+.form-container .smallInput {
+    width: 110px;
+}
+
+.form-container .smallTextarea{
+    width: 190px;
+    height: 90px;
+}
+
+.form-container .normalTextarea{
+    width: 190px;
+    height: 150px;
+}

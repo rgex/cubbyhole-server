@@ -43,6 +43,39 @@ return array(
                     ),
                 ),
             ),
+            'adminOffer' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/admin/offer/',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Offer',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'editOffer' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/admin/offer/edit/[:id]',
+                    'constraints' => array(
+                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Offer',
+                        'action'     => 'edit',
+                    ),
+                ),
+            ),
+            'newOffer' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/admin/offer/new',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Offer',
+                        'action'     => 'new',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -68,6 +101,7 @@ return array(
         'invokables' => array(
             'Admin\Controller\Index'    => 'Admin\Controller\IndexController',
             'Admin\Controller\User'     => 'Admin\Controller\UserController',
+            'Admin\Controller\Offer'     => 'Admin\Controller\OfferController',
         ),
     ),
     'view_manager' => array(

@@ -92,8 +92,7 @@ class GridHelper
                     $isFirstLine = false;
                     foreach($row as $key=>$field)
                     {
-                        $alias = isset($aliases[$key])? $aliases[$key] : $key;
-                        $csv .= str_replace(",","\\,",$alias);
+                        $csv .= str_replace(",","\\,",$key);
                         $csv .= ',';
                     }
                     $csv .= "\n";

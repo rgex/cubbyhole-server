@@ -1,0 +1,14 @@
+<?php
+echo $this->partial('layout/menuLeftAdmin');
+?>
+<div class="rightContent">
+<?php
+echo $this->partial('layout/flashMessage');
+?>
+<br/>
+    <a href="<?php echo $this->url('newOffer'); ?>"><button class="btn btn-primary">New offer</button></a> &nbsp;
+    <a href="?exportAsCSV"><button class="btn btn-primary">Export CSV</button></a>
+<?php
+echo $this->table;
+?>
+</div>

@@ -1,0 +1,31 @@
+<?php
+echo $this->partial('layout/menuLeftAdmin');
+?>
+<h1 class="page-header center-text"><?php echo $this->translate('Edit Offer'); ?></h1>
+
+<?php
+echo $this->partial('layout/flashMessage');
+?>
+
+<div class="form-container">
+
+    <?php
+    $this->headTitle($this->translate('register'));
+    $this->form->setAttribute('action','');
+    $this->form->setAttribute('class','form-horizontal');
+    $this->form->prepare();
+    echo $this->form()->openTag($this->form);
+    echo $this->formHidden($this->form->get('id'));
+    echo '<div class="input-row">'.$this->formRow($this->form->get('position_priority')).'</div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('month_price')).' <b>€</b></div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('size_go')).' <b>GB</b></div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('maximum_upload_speed')).' <b>MB</b></div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('maximum_download_speed')).' <b>MB</b></div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('title')).'</div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('short_description')).'</div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('long_description')).'</div>';
+    echo '<div><a href="'.$this->url('adminOffer').'"><button type="button" class="btn btn-default cancelBtn">cancel</button></a>';
+    echo $this->formSubmit($this->form->get('save')).'</div>';
+    echo $this->form()->closeTag();
+    ?>
+</div>
