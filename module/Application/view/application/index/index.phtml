@@ -5,40 +5,26 @@
 </div>
 
 <div class="row">
+    <?php
+    foreach($this->offers as $row) {
+        //var_dump($row);
+    ?>
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Offer 1') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('Price : Free <br/>')); ?></p>
-                <p><a class="btn btn-success pull-right" href="#"><?php echo $this->translate('See more') ?> &raquo;</a></p>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $this->translate($row->title); ?></h3>
+                </div>
+                <div class="panel-body">
+                    <p><?php echo sprintf($this->translate('Price : '.$row->month_price.'€/month <br/>')); ?></p>
+                    <p><?php echo sprintf($this->translate('Space : '.$row->size_go.' GB <br/>')); ?></p>
+                    <p><?php echo sprintf($this->translate($row->short_description)); ?></p>
+                    <p><a class="btn btn-success pull-right" href="#"><?php echo $this->translate('See more') ?> &raquo;</a></p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Offer 2') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('Price : 1.99$ /month')); ?></p>
-                <p><a class="btn btn-success pull-right" href="#"><?php echo $this->translate('See more') ?> &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->translate('Offer 3') ?></h3>
-            </div>
-            <div class="panel-body">
-                <p><?php echo sprintf($this->translate('Price 4.99$ /month')); ?></p>
-                <p><a class="btn btn-success pull-right" href="#" target="_blank"><?php echo $this->translate('See more') ?> &raquo;</a></p>
-            </div>
-        </div>
-    </div>
+        <?php
+    }
+    ?>
 </div>

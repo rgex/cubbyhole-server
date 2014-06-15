@@ -30,6 +30,20 @@ class IndexController extends AbstractActionController
         }
         return $this->userTable;
     }
+
+    /**
+     *
+     * @return Application\Model\OfferTable
+     */
+    private function getOfferTable()
+    {
+        if(!isset($this->userTable))
+        {
+            $sm = $this->getServiceLocator();
+            $this->userTable = $sm->get('Application\Model\OfferTable');
+        }
+        return $this->userTable;
+    }
     
     /**
      * 
@@ -47,7 +61,8 @@ class IndexController extends AbstractActionController
     
     public function indexAction()
     {
-        return new ViewModel();
+        $offers = $this->getOfferTable()->getBestOffers();
+        return new ViewModel(array('offers' => $offers));
     }
     
     public function loginAction()

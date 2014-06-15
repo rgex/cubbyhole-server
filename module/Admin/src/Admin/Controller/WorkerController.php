@@ -56,6 +56,8 @@ class WorkerController extends AbstractActionController
                                               'ws2'                 =>  'Webservice download',
                                               'last_update'         =>  'Last update',
                                               'date_creation'       =>  'Creation date',
+                                              'free_space_bytes'    =>  'Free space',
+                                              'used_space_bytes'    =>  'Used space',
                                               'status'              =>  'Status'
                                              ),
 

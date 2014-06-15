@@ -1,6 +1,7 @@
 <?php
 
 namespace Application\Model;
+use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Crypt\Password\Bcrypt;
@@ -16,6 +17,14 @@ class OfferTable
     public function fetchAll()
     {
         $resultSet = $this->tableGateway->select();
+        return $resultSet;
+    }
+
+    public function getBestOffers($n = 3)
+    {
+        $select = new Select();
+        $select->order('position_priority DESC')->limit($n);
+        $resultSet = $this->tableGateway->select($select);
         return $resultSet;
     }
     
