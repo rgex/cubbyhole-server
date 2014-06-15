@@ -125,6 +125,7 @@ class WorkerController extends AbstractActionController
                                    'free_space_bytes',
                                    'used_space_bytes',
                                    'last_update',
+				   'count',
                                    'status');
                 $data = $offer->returnArray($filterOut);
                 $this->getWorkerTable()->update($data, 'id = \''.$this->params()->fromRoute('id').'\'');

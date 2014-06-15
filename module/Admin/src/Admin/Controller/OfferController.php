@@ -115,7 +115,8 @@ class OfferController extends AbstractActionController
             {
                 $offer = new Offer();
                 $offer->exchangeRow($this->getRequest()->getPost());
-                $filterOut = array('date_creation');
+                $filterOut = array('date_creation',
+				   'count');
                 $data = $offer->returnArray($filterOut);
                 $data['date_last_edit'] = time();
                 $this->getOfferTable()->update($data, 'id = \''.$this->params()->fromRoute('id').'\'');

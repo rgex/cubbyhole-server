@@ -104,6 +104,7 @@ class UserController extends AbstractActionController
                                    'subscription_ip',
                                    'expire',
                                    'nbr_of_files',
+				   'count',
                                    'space_used_in_bytes');
                 if(empty($user->password))
                 {
