@@ -63,7 +63,7 @@ class OfferController extends AbstractActionController
                                              ),
 
 
-                  'filterOut'       =>  array('id','short_description','long_description'),
+                  'filterOut'       =>  array('id','short_description','long_description','count'),
 
                   'baseUrl'         =>  $this->url()->fromRoute('adminOffer'),
 

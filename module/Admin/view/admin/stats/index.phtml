@@ -22,6 +22,29 @@
             }
         );
     });
+
+    $(document).ready(function () {
+        var data = [
+            ['down', <?php echo $this->inActiveWorkersCount; ?>],
+            ['up', <?php echo $this->activeWorkersCount; ?>]
+        ];
+
+        jQuery.jqplot('chartWorkers', [data],
+            {
+                seriesDefaults: {
+// Make this a pie chart.
+                    renderer: jQuery.jqplot.PieRenderer,
+                    rendererOptions: {
+// Put data labels on the pie slices.
+// By default, labels show the percentage of the slice.
+                        showDataLabels: true
+                    }
+                },
+                legend: { show: true, location: 'e' },
+                title: 'San Disk Usage'
+            }
+        );
+    });
 </script>
 
 <script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/jquery.jqplot.min.js"></script>
@@ -52,6 +75,12 @@ echo '<h1 class="page-header center-text">'.$this->translate('System Healthy').'
 echo '<b>Disk usage : '.(round($this->usedSpace/1000000)/1000).' / '.(round($this->usedSpace/1000000)/1000 + round($this->freeSpace/1000000)/1000).' GB</b><br/>';
 ?>
 <div id="chartDiskUsage" style="height: 300px; width: 500px; position: relative; margin-left: auto; margin-right: auto;" class="jqplot-target">
+</div>
+
+<?php
+echo '<b>Active workers: '.$this->activeWorkersCount.' / '.($this->inActiveWorkersCount + $this->activeWorkersCount).' </b><br/>';
+?>
+<div id="chartWorkers" style="height: 300px; width: 500px; position: relative; margin-left: auto; margin-right: auto;" class="jqplot-target">
 </div>
 <?php
 echo '<br/>';

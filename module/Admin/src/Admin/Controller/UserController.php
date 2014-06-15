@@ -75,7 +75,7 @@ class UserController extends AbstractActionController
                                              ),
 
 
-                  'filterOut'       =>  array('id','password','subscription_ip'),
+                  'filterOut'       =>  array('id','password','subscription_ip','count'),
 
                   'baseUrl'         =>  $this->url()->fromRoute('adminUser'),
 

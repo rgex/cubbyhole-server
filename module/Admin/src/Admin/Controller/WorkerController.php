@@ -65,7 +65,7 @@ class WorkerController extends AbstractActionController
                                               'last_update'         =>'dateFromTimestamp'
                                              ),
 
-                  'filterOut'       =>  array(),
+                  'filterOut'       =>  array('count'),
 
                   'baseUrl'         => $this->url()->fromRoute('adminWorker'),
 

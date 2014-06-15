@@ -12,4 +12,26 @@ echo $this->partial('layout/flashMessage');
 $this->headTitle($this->translate('Offers'));
 ?>
 
+
+
+<h1 class="page-header center-text"><?php echo $this->translate('Edit profile'); ?></h1>
+    <div class="form-container">
+
+        <?php
+        $this->headTitle($this->translate('Edit User'));
+        $this->form->setAttribute('action','');
+        $this->form->setAttribute('class','form-horizontal');
+        $this->form->prepare();
+        echo $this->form()->openTag($this->form);
+        echo $this->formHidden($this->form->get('id'));
+        echo '<div class="input-row">'.$this->formRow($this->form->get('first_name')).'</div>';
+        echo '<div class="input-row">'.$this->formRow($this->form->get('last_name')).'</div>';
+        echo '<div class="input-row">'.$this->formRow($this->form->get('email')).'</div>';
+        echo '<div class="input-row">'.$this->formRow($this->form->get('password')).'</div>';
+        echo '<div class="input-row">'.$this->formRow($this->form->get('phone')).'</div>';
+        echo '<div><a href="'.$this->url('adminUser').'"><button type="button" class="btn btn-default cancelBtn">cancel</button></a>';
+        echo $this->formSubmit($this->form->get('save')).'</div>';
+        echo $this->form()->closeTag();
+        ?>
+    </div>
 </div>
