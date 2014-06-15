@@ -90,7 +90,7 @@ class WorkerController extends AbstractActionController
             {
                 $worker = new Worker();
                 $worker->exchangeRow($this->getRequest()->getPost());
-                $data = $worker->returnArray();
+                $data = $worker->returnArray(array('count'));
                 $data['date_creation']      = time();
                 $data['free_space_bytes']   = 0;
                 $data['used_space_bytes']   = 0;

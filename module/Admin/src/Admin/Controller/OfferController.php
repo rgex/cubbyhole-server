@@ -87,7 +87,7 @@ class OfferController extends AbstractActionController
             {
                 $offer = new Offer();
                 $offer->exchangeRow($this->getRequest()->getPost());
-                $data = $offer->returnArray();
+                $data = $offer->returnArray(array('count'));
                 $data['date_creation'] = time();
                 $data['date_last_edit'] = time();
                 $this->getOfferTable()->insert($data);

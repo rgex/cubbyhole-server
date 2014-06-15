@@ -150,10 +150,12 @@ class IndexController extends AbstractActionController
                     $password = $data['password'];
                     $data['password'] = $bcrypt->create($password); //hashing password
                     $data['role'] = 'Customer';
+		    $data['nbr_of_files'] = 0;
+		    $data['space_used_in_bytes'] = 0;
                     $data['offer_id'] = 1;      //free offer
                     $data['expire'] = 0;
                     $user->exchangeArray($data);
-                    $this->getUserTable()->insert($user->returnArray(array('id')));
+                    $this->getUserTable()->insert($user->returnArray(array('id','count')));
 
                     $userData = $this->getUserTable()->login($data['email'],$password);
                     if($userData)
