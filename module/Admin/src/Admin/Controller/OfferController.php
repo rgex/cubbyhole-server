@@ -52,9 +52,9 @@ class OfferController extends AbstractActionController
                                               'title'                   =>  'Title',
                                               'month_price'             =>  'Price/month',
                                               'size_go'                 =>  'Max Space',
-                                              'maximum_upload_speed'    =>  'Max. upload speed',
-                                              'maximum_download_speed'  =>  'Max. download speed',
-                                              'date_creation'           =>  'date_creation',
+                                              'maximum_upload_speed'    =>  'Upload bandwidth',
+                                              'maximum_download_speed'  =>  'Download bandwidth',
+                                              'date_creation'           =>  'Creation date',
                                               'date_last_edit'          =>  'Last edit'
                                              ),
 

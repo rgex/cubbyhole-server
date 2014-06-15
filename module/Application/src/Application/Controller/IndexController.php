@@ -64,6 +64,12 @@ class IndexController extends AbstractActionController
         $offers = $this->getOfferTable()->getBestOffers();
         return new ViewModel(array('offers' => $offers));
     }
+
+    public function offerAction()
+    {
+        $offer = $this->getOfferTable()->getOffer($this->params()->fromRoute('id'));
+        return new ViewModel(array('offer' => $offer));
+    }
     
     public function loginAction()
     {

@@ -19,7 +19,7 @@
                     <p><?php echo sprintf($this->translate('Price : '.$row->month_price.'€/month <br/>')); ?></p>
                     <p><?php echo sprintf($this->translate('Space : '.$row->size_go.' GB <br/>')); ?></p>
                     <p><?php echo sprintf($this->translate($row->short_description)); ?></p>
-                    <p><a class="btn btn-success pull-right" href="#"><?php echo $this->translate('See more') ?> &raquo;</a></p>
+                    <p><a class="btn btn-success pull-right" href="<?php echo $this->url('offer').$row->id; ?>"><?php echo $this->translate('See more') ?> &raquo;</a></p>
                 </div>
             </div>
         </div>

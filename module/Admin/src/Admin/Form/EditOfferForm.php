@@ -57,18 +57,18 @@ class EditOfferForm extends Form
                              'class'    => 'smallInput'
                          ),
                          'options'      => array(
-                             'label'    => 'Max. upload speed'
+                             'label'    => 'Upload bandwidth'
                          )
             ));
 
         $this->add(array('name' => 'maximum_download_speed',
-            'attributes'   => array(
-                'type'     => 'text',
-                'class'    => 'smallInput'
-            ),
-            'options'      => array(
-                'label'    => 'Max. download speed'
-            )
+                        'attributes'   => array(
+                            'type'     => 'text',
+                            'class'    => 'smallInput'
+                        ),
+                        'options'      => array(
+                            'label'    => 'Download bandwidth'
+                        )
         ));
 
         $this->add(array('name' => 'title',

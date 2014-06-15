@@ -4,6 +4,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Index\index',
                                 'Application\Controller\Index\register',
                                 'Application\Controller\Captcha\generate',
+                                'Application\Controller\Index\offer',
 
              ),
     
@@ -12,6 +13,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Index\register',
                                 'Application\Controller\Index\logout',
                                 'Application\Controller\Captcha\generate',
+                                'Application\Controller\Index\offer',
              ),
 
              'Admin'=>    array('Application\Controller\Index\login',
@@ -19,6 +21,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Index\register',
                                 'Application\Controller\Index\logout',
                                 'Application\Controller\Captcha\generate',
+                                'Application\Controller\Index\offer',
 
 
                                 //Admin specific

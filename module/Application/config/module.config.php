@@ -50,6 +50,19 @@ return array(
                     ),
                 ),
             ),
+            'offer' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/offer/[:id]',
+                    'constraints' => array(
+                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'offer',
+                    ),
+                ),
+            ),
             'captcha' => array(
                 'type' => 'Segment',
                 'options' => array(

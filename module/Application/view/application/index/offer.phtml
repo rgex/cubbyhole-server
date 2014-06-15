@@ -1,0 +1,19 @@
+<h1 class="page-header center-text"><?php echo $this->translate($this->offer->title); ?></h1>
+
+<?php
+$this->headTitle($this->translate($this->offer->title));
+
+echo '<br/>';
+echo '<b>'.$this->translate('PRICE : '.$this->offer->month_price.' €/month').'</b>';
+echo '<br/>';
+echo '<b>'.$this->translate('Available space : '.$this->offer->size_go.' GB').'</b>';
+echo '<br/>';
+echo '<b>'.$this->translate('Upload bandwidth : '.$this->offer->maximum_download_speed.' MB/s').'</b>';
+echo '<br/>';
+echo '<b>'.$this->translate('Download bandwidth: '.$this->offer->maximum_upload_speed.' MB/s').'</b>';
+echo '<br/>';
+echo '<hr/>';
+echo $this->translate($this->offer->short_description);
+echo '<hr/>';
+echo $this->translate($this->offer->long_description);
+?>
