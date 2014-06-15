@@ -35,8 +35,13 @@ $this->headTitle($this->translate('Files'));
     <br/>
     <div class="content">
         <div class="actionTab">
-            <button onclick="createFolder(); return false;"><img src="<?php echo $this->basePath(); ?>/img/folder.gif"> New Folder</button> &nbsp;
-            <button onclick="displayUpload(); return false;"><img src="<?php echo $this->basePath(); ?>/img/upload.png"> Upload file</button>
+            <?php if(isset($this->token)) { ?>
+            <?php echo $this->translate('Share your public files with others, give them this link :'); ?>
+                <a href="<?php echo 'http://cubbyhole-server/customer/files/'.$this->userInfos->id; ?>">
+                    <?php echo 'http://cubbyhole-server/customer/files/'.$this->userInfos->id; ?> </a><br/><br/>
+            <button id="createFolderBtn" onclick="createFolder(); return false;"><img src="<?php echo $this->basePath(); ?>/img/folder.gif"> New Folder</button> &nbsp;
+            <button id="displayUploadBtn" onclick="displayUpload(); return false;"><img src="<?php echo $this->basePath(); ?>/img/upload.png"> Upload file</button>
+            <?php } ?>
         </div>
 
         <div class="upload">

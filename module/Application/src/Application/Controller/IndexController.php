@@ -2,6 +2,7 @@
 
 namespace Application\Controller;
 
+use Application\Helper\WorkerHelper;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Model\User;
@@ -43,6 +44,20 @@ class IndexController extends AbstractActionController
             $this->offerTable = $sm->get('Application\Model\OfferTable');
         }
         return $this->offerTable;
+    }
+
+    /**
+     *
+     * @return Application\Model\WorkerTable
+     */
+    private function getWorkerTable()
+    {
+        if(!isset($this->workerTable))
+        {
+            $sm = $this->getServiceLocator();
+            $this->workerTable = $sm->get('Application\Model\WorkerTable');
+        }
+        return $this->workerTable;
     }
     
     /**
@@ -119,35 +134,44 @@ class IndexController extends AbstractActionController
             
             if($form->isValid())
             {
-                $user = new User();
-                $data = array_merge($form->getData(),
-                        array('subscription_date'       => time(),
-                              'last_connection_date'    => time(),
-                              'subscription_ip'         => $_SERVER['REMOTE_ADDR'],
-                              'role'                    => 'Customer'));
-                $bcrypt = new Bcrypt();
-                $password = $data['password'];
-                $data['password'] = $bcrypt->create($password); //hashing password
-                $data['role'] = 'Customer';
-                $data['offer_id'] = 1;      //free offer
-                $data['expire'] = 0;
-                $user->exchangeArray($data);
-                $this->getUserTable()->insert($user->returnArray(array('id')));
-                
-                $userData = $this->getUserTable()->login($data['email'],$password);
-                if($userData)
-                {
-                    //everything O.K
-                    $this->getServiceLocator()->get('AuthService')->getStorage()->write($userData);
-                    //TODO redirect customer to his home page
-
-                }
-                else
-                {
-                    //Subscription failed because of an unknown error
+                if(!$this->getWorkerTable()->getActiveWorker()) {
                     $this->flashMessenger()->addErrorMessage(
-                        $this->getTranslator()->translate('Something went wrong please retry later.')
+                        $this->getTranslator()->translate('Error : no active worker available, please retry later.')
                     );
+                }
+                else{
+                    $user = new User();
+                    $data = array_merge($form->getData(),
+                            array('subscription_date'       => time(),
+                                  'last_connection_date'    => time(),
+                                  'subscription_ip'         => $_SERVER['REMOTE_ADDR'],
+                                  'role'                    => 'Customer'));
+                    $bcrypt = new Bcrypt();
+                    $password = $data['password'];
+                    $data['password'] = $bcrypt->create($password); //hashing password
+                    $data['role'] = 'Customer';
+                    $data['offer_id'] = 1;      //free offer
+                    $data['expire'] = 0;
+                    $user->exchangeArray($data);
+                    $this->getUserTable()->insert($user->returnArray(array('id')));
+
+                    $userData = $this->getUserTable()->login($data['email'],$password);
+                    if($userData)
+                    {
+                        //everything O.K
+                        $workerHelper =  new WorkerHelper($this->getWorkerTable());
+                        $workerAnswer = $workerHelper->createUser($userData->id);
+
+                        $this->getServiceLocator()->get('AuthService')->getStorage()->write($userData);
+                        $this->redirect()->toRoute('customerIndex');
+                    }
+                    else
+                    {
+                        //Subscription failed because of an unknown error
+                        $this->flashMessenger()->addErrorMessage(
+                            $this->getTranslator()->translate('Something went wrong please retry later.')
+                        );
+                    }
                 }
             }
         }

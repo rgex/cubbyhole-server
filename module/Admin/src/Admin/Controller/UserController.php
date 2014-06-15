@@ -97,7 +97,12 @@ class UserController extends AbstractActionController
             {
                 $user = new User();
                 $user->exchangeRow($this->getRequest()->getPost());
-                $filterOut = array('subscription_date','last_connection_date','subscription_ip','expire');
+                $filterOut = array('subscription_date',
+                                   'last_connection_date',
+                                   'subscription_ip',
+                                   'expire',
+                                   'nbr_of_files',
+                                   'space_used_in_bytes');
                 if(empty($user->password))
                 {
                     $filterOut[] = 'password';

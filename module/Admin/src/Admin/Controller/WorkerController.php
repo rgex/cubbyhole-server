@@ -121,7 +121,11 @@ class WorkerController extends AbstractActionController
             {
                 $offer = new Worker();
                 $offer->exchangeRow($this->getRequest()->getPost());
-                $filterOut = array('date_creation', 'free_space_bytes', 'used_space_bytes', 'last_update', 'status');
+                $filterOut = array('date_creation',
+                                   'free_space_bytes',
+                                   'used_space_bytes',
+                                   'last_update',
+                                   'status');
                 $data = $offer->returnArray($filterOut);
                 $this->getWorkerTable()->update($data, 'id = \''.$this->params()->fromRoute('id').'\'');
                 $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The worker has been edited.'));
