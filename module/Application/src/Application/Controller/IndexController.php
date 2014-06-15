@@ -105,9 +105,9 @@ class IndexController extends AbstractActionController
 
                     //if user is a admin we redirect him to admin home page
                     if($userData->role == 'Admin')
-                        $this->redirect()->toRoute('adminIndex');
-
-                    //TODO redirect non admin user to his home
+                        $this->redirect()->toRoute('stats');
+                    if($userData->role == 'Customer')
+                        $this->redirect()->toRoute('customerIndex');
                 }
                 else
                 {

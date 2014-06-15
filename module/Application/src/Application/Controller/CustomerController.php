@@ -89,7 +89,12 @@ class CustomerController extends AbstractActionController
     
     public function indexAction()
     {
-        return new ViewModel();
+        $userId     = $this->identity()->id;
+        $userInfos  = $this->getUserTable()->getUser($userId);
+        $offer      = $this->getOfferTable()->getOffer($userInfos->offer_id);
+
+        return new ViewModel(array('userInfos'  => $userInfos,
+                                   'offer'      => $offer));
     }
 
     public function offersAction()
