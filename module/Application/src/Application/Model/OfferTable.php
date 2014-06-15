@@ -20,6 +20,16 @@ class OfferTable
         return $resultSet;
     }
 
+    public function getOffersForFormSelect()
+    {
+        $resultSet = $this->tableGateway->select();
+        $res = array();
+        foreach($resultSet as $row) {
+            $res[$row->id] = $row->title;
+        }
+        return $res;
+    }
+
     public function getBestOffers($n = 3)
     {
         $select = new Select();

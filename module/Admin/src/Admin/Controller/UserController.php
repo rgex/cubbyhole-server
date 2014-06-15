@@ -19,6 +19,20 @@ class UserController extends AbstractActionController
 
     /**
      *
+     * @return Application\Model\OfferTable
+     */
+    private function getOfferTable()
+    {
+        if(!isset($this->offerTable))
+        {
+            $sm = $this->getServiceLocator();
+            $this->offerTable = $sm->get('Application\Model\OfferTable');
+        }
+        return $this->offerTable;
+    }
+
+    /**
+     *
      * @return Application\Model\UserTable
      */
     private function getUserTable()
@@ -51,6 +65,7 @@ class UserController extends AbstractActionController
                                               'role'                    =>  'Role',
                                               'last_connection_date'    =>  'Last Connection Date',
                                               'email'                   =>  'E-mail',
+                                              'offer_id'                =>  'Offer ID',
                                              ),
 
                   'dataFormatter'   =>  array('subscription_date'       =>'dateFromTimestamp',
@@ -73,7 +88,7 @@ class UserController extends AbstractActionController
     {
 
         $editUserFilter = new EditUserFilter($this->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
-        $form = new EditUserForm();
+        $form = new EditUserForm($this->getOfferTable());
         if($this->getRequest()->isPost()) {
             $form->setInputFilter($editUserFilter->getInputFilter());
             $form->setData($this->getRequest()->getPost());
@@ -82,7 +97,7 @@ class UserController extends AbstractActionController
             {
                 $user = new User();
                 $user->exchangeRow($this->getRequest()->getPost());
-                $filterOut = array('subscription_date','last_connection_date','subscription_ip','offer_id','expire');
+                $filterOut = array('subscription_date','last_connection_date','subscription_ip','expire');
                 if(empty($user->password))
                 {
                     $filterOut[] = 'password';

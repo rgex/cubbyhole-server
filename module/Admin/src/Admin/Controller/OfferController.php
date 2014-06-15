@@ -26,12 +26,12 @@ class OfferController extends AbstractActionController
      */
     private function getOfferTable()
     {
-        if(!isset($this->userTable))
+        if(!isset($this->offerTable))
         {
             $sm = $this->getServiceLocator();
-            $this->userTable = $sm->get('Application\Model\OfferTable');
+            $this->offerTable = $sm->get('Application\Model\OfferTable');
         }
-        return $this->userTable;
+        return $this->offerTable;
     }
 
     private function getTranslator()

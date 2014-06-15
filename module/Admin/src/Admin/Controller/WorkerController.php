@@ -29,12 +29,12 @@ class WorkerController extends AbstractActionController
      */
     private function getWorkerTable()
     {
-        if(!isset($this->userTable))
+        if(!isset($this->workerTable))
         {
             $sm = $this->getServiceLocator();
-            $this->userTable = $sm->get('Application\Model\WorkerTable');
+            $this->workerTable = $sm->get('Application\Model\WorkerTable');
         }
-        return $this->userTable;
+        return $this->workerTable;
     }
 
     private function getTranslator()

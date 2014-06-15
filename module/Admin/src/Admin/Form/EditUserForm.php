@@ -2,14 +2,17 @@
 
 namespace Admin\Form;
 
+use Application\Model\OfferTable;
 use Zend\Form\Element\Select;
 use Zend\Form\Element;
 use Zend\Form\Form;
 
 class EditUserForm extends Form
 {
-    public function __construct($name = null)
+    public function __construct(OfferTable $offerTable)
     {
+        $this->offerTable = $offerTable;
+
         parent::__construct('Register');
         
         $this->setAttribute('method','POST');
@@ -71,6 +74,14 @@ class EditUserForm extends Form
             'options'      => array(
                 'value_options' => array('Admin' => 'Admin','Customer' => 'Customer'),
                 'label'    => 'role'
+            )
+        ));
+
+        $this->add(array('name' => 'offer_id',
+            'type'     => 'Zend\Form\Element\Select',
+            'options'      => array(
+                'value_options' => $this->offerTable->getOffersForFormSelect(),
+                'label'    => 'Offer'
             )
         ));
 

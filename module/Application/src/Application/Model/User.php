@@ -14,6 +14,8 @@ class User
     public $last_connection_date;
     public $subscription_ip;
     public $role;
+    public $offer_id;
+    public $expire;
 
     public function exchangeRow($data)
     {
@@ -27,6 +29,8 @@ class User
         $this->last_connection_date     = (isset($data->last_connection_date)) ? $data->last_connection_date : null;
         $this->subscription_ip          = (isset($data->subscription_ip)) ? $data->subscription_ip : null;
         $this->role                     = (isset($data->role)) ? $data->role : null;
+        $this->offer_id                 = (isset($data->offer_id)) ? $data->offer_id : null;
+        $this->expire                   = (isset($data->expire)) ? $data->expire : null;
     }
 
     public function exchangeArray(Array $data)
@@ -41,6 +45,8 @@ class User
         $this->last_connection_date     = (isset($data['last_connection_date'])) ? $data['last_connection_date'] : null;
         $this->subscription_ip          = (isset($data['subscription_ip'])) ? $data['subscription_ip'] : null;
         $this->role                     = (isset($data['role'])) ? $data['role'] : null;
+        $this->offer_id                 = (isset($data['offer_id'])) ? $data['offer_id'] : null;
+        $this->expire                   = (isset($data['expire'])) ? $data['expire'] : null;
     }
     
     public function returnArray(Array $filterOut = array())
@@ -55,7 +61,9 @@ class User
                 'subscription_date'     => $this->subscription_date,
                 'last_connection_date'  => $this->last_connection_date,
                 'subscription_ip'       => $this->subscription_ip,
-                'role'                  => $this->role
+                'role'                  => $this->role,
+                'offer_id'              => $this->offer_id,
+                'expire'                => $this->expire
             );
             
             foreach($filterOut as $propertyName)
