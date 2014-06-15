@@ -103,4 +103,42 @@ class WsController extends AbstractActionController
         }
     }
 
+    public function updateDiskSpaceAction()
+    {
+        if(isset($_POST['token'])){
+            $userId = $this->getTokenTable()->getUserIdWithToken($_POST['token']);
+            if($userId)
+            {
+                $res = array();
+                if(isset($_POST['added']) && $_POST['added'] > 0)
+                {
+                    $this->getUserTable()->addDiskUsage($userId, $_POST['added']*1);
+                    $res[] = 'added space : '.$_POST['added']*1;
+                }
+                if(isset($_POST['removed']) && $_POST['removed'] > 0)
+                {
+                    $this->getUserTable()->addDiskUsage($userId, $_POST['removed']*-1);
+                    $res[] = 'removed space : '.$_POST['removed']*-1;
+                }
+                if(isset($_POST['addedFiles']) && $_POST['addedFiles'] > 0)
+                {
+                    $this->getUserTable()->addFiles($userId, $_POST['addedFiles']*1);
+                    $res[] = 'added files : '.$_POST['addedFiles']*1;
+                }
+                if(isset($_POST['removedFiles']) && $_POST['removedFiles'] > 0)
+                {
+                    $this->getUserTable()->addFiles($userId, $_POST['removedFiles']*-1);
+                    $res[] = 'removed files : '.$_POST['removedFiles']*-1;
+                }
+                die(json_encode($res));
+            }
+            else
+            {
+                die(json_encode(array('error' => 'invalid token')));
+            }
+        }
+        else {
+            die(json_encode(array('error' => 'no token provided')));
+        }
+    }
 }

@@ -9,6 +9,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
 
                                 //webservice
                                 'Application\Controller\Ws\getUserWithToken',
+                                'Application\Controller\Ws\updateDiskSpace',
              ),
     
              'Customer'=> array('Application\Controller\Index\login',
@@ -23,6 +24,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
 
                                 //webservice
                                 'Application\Controller\Ws\getUserWithToken',
+                                'Application\Controller\Ws\updateDiskSpace',
              ),
 
              'Admin'=>    array('Application\Controller\Index\login',
@@ -50,5 +52,6 @@ return array('guest'=>    array('Application\Controller\Index\login',
 
                                 //webservice
                                 'Application\Controller\Ws\getUserWithToken',
+                                'Application\Controller\Ws\updateDiskSpace',
              ),
     );

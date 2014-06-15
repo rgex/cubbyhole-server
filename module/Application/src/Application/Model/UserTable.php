@@ -62,5 +62,25 @@ class UserTable
             return null;
         }
     }
+
+    public function addDiskUsage($userId, $space)
+    {
+        $userRow = $this->getUser($userId);
+        $user = new User();
+        $user->exchangeRow($userRow);
+        $data = $user->returnArray();
+        $data['space_used_in_bytes'] += $space;
+        $this->tableGateway->update($data,'id = '.$userId);
+    }
+
+    public function addFiles($userId, $nbrOfFiles)
+    {
+        $userRow = $this->getUser($userId);
+        $user = new User();
+        $user->exchangeRow($userRow);
+        $data = $user->returnArray();
+        $data['nbr_of_files'] += $nbrOfFiles;
+        $this->tableGateway->update($data,'id = '.$userId);
+    }
     
 }

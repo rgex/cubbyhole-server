@@ -106,6 +106,16 @@ return array(
                     ),
                 ),
             ),
+            'updateDiskSpaceWS' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/ws/updateDiskSpace/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ws',
+                        'action'     => 'updateDiskSpace',
+                    ),
+                ),
+            ),
             'captcha' => array(
                 'type' => 'Segment',
                 'options' => array(
