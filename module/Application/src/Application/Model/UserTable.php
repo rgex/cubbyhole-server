@@ -70,7 +70,7 @@ class UserTable
         $userRow = $this->getUser($userId);
         $user = new User();
         $user->exchangeRow($userRow);
-        $data = $user->returnArray();
+        $data = $user->returnArray(array('count'));
         $data['space_used_in_bytes'] += $space;
         $this->tableGateway->update($data,'id = '.$userId);
     }
@@ -80,7 +80,7 @@ class UserTable
         $userRow = $this->getUser($userId);
         $user = new User();
         $user->exchangeRow($userRow);
-        $data = $user->returnArray();
+        $data = $user->returnArray(array('count'));
         $data['nbr_of_files'] += $nbrOfFiles;
         $this->tableGateway->update($data,'id = '.$userId);
     }

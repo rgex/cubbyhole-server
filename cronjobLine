@@ -1,2 +1,3 @@
+in /etc/cronjobtab
 */1 * * * *     root    php /var/www/cubbyhole-server/public/index.php updateWo$
 
