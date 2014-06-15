@@ -109,6 +109,16 @@ return array(
                     ),
                 ),
             ),
+            'stats' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/admin/stats/',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Stats',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -136,6 +146,7 @@ return array(
             'Admin\Controller\User'     => 'Admin\Controller\UserController',
             'Admin\Controller\Offer'     => 'Admin\Controller\OfferController',
             'Admin\Controller\Worker'     => 'Admin\Controller\WorkerController',
+            'Admin\Controller\Stats'     => 'Admin\Controller\StatsController',
         ),
     ),
     'view_manager' => array(

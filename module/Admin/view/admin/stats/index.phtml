@@ -1,0 +1,40 @@
+<?php
+echo $this->partial('layout/menuLeftAdmin');
+?>
+<div class="rightContent">
+<?php
+echo $this->partial('layout/flashMessage');
+?>
+
+<?php
+$this->headTitle($this->translate('System Overview'));
+
+echo '<h1 class="page-header center-text">'.$this->translate('System Overview').'</h1>';
+echo '<br/>';
+echo '<b>'.$this->translate('Registered users : 10').'</b>';
+echo '<br/>';
+echo '<b>'.$this->translate('Offers : 10').'</b>';
+echo '<br/>';
+
+echo '<h1 class="page-header center-text">'.$this->translate('System Healthy').'</h1>';
+echo '<b>TODO JPLOT</b>';
+echo '<br/>';
+
+echo '<h1 class="page-header center-text">'.$this->translate('Today').'</h1>';
+echo '<br/>';
+echo '<b>'.$this->translate('New Customers : 10').'</b>';
+echo '<br/>';
+
+echo '<h1 class="page-header center-text">'.$this->translate('This week').'</h1>';
+echo '<br/>';
+echo '<b>'.$this->translate('New Customers : 10').'</b>';
+echo '<br/>';
+
+echo '<h1 class="page-header center-text">'.$this->translate('This month').'</h1>';
+echo '<br/>';
+echo '<b>'.$this->translate('New Customers : 10').'</b>';
+echo '<br/>';
+
+?>
+
+</div>

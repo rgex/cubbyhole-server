@@ -25,7 +25,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
 
 
                                 //Admin specific
-                                'Admin\Controller\Index\index',
+                                'Admin\Controller\Stats\index',
 
                                 'Admin\Controller\User\index',
                                 'Admin\Controller\User\edit',
