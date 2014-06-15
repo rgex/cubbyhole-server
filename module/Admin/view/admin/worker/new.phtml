@@ -1,0 +1,26 @@
+<?php
+echo $this->partial('layout/menuLeftAdmin');
+?>
+<h1 class="page-header center-text"><?php echo $this->translate('New Worker'); ?></h1>
+
+<?php
+echo $this->partial('layout/flashMessage');
+?>
+
+<div class="form-container">
+
+    <?php
+    $this->headTitle($this->translate('New Worker'));
+    $this->form->setAttribute('action','');
+    $this->form->setAttribute('class','form-horizontal');
+    $this->form->prepare();
+    echo $this->form()->openTag($this->form);
+    echo $this->formHidden($this->form->get('id'));
+    echo '<div class="input-row">'.$this->formRow($this->form->get('location')).'</div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('ws1')).'</div>';
+    echo '<div class="input-row">'.$this->formRow($this->form->get('ws2')).'</div>';
+    echo '<div><a href="'.$this->url('adminOffer').'"><button type="button" class="btn btn-default cancelBtn">cancel</button></a>';
+    echo $this->formSubmit($this->form->get('save')).'</div>';
+    echo $this->form()->closeTag();
+    ?>
+</div>

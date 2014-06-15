@@ -11,6 +11,8 @@ namespace Application;
 
 use Application\Model\Offer;
 use Application\Model\OfferTable;
+use Application\Model\Worker;
+use Application\Model\WorkerTable;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Application\Model\User;
@@ -67,13 +69,24 @@ class Module
                     $tableGateway = $sm->get('OfferTableGateway');
                     $table = new OfferTable($tableGateway);
                     return $table;
-                },
+            },
             'OfferTableGateway' => function($sm){
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetAdapter = new ResultSet();
                     $resultSetAdapter->setArrayObjectPrototype(new Offer());
                     return new TableGateway('offers',$dbAdapter,null,$resultSetAdapter);
-                },
+             },
+            'Application\Model\WorkerTable' => function($sm){
+                    $tableGateway = $sm->get('WorkerTableGateway');
+                    $table = new WorkerTable($tableGateway);
+                    return $table;
+            },
+            'WorkerTableGateway' => function($sm){
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetAdapter = new ResultSet();
+                    $resultSetAdapter->setArrayObjectPrototype(new Worker());
+                    return new TableGateway('workers',$dbAdapter,null,$resultSetAdapter);
+            },
             'Application\Model\AuthStorage' => function($sm){
                 return new Model\AuthStorage();
             },

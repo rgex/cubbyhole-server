@@ -76,6 +76,39 @@ return array(
                     ),
                 ),
             ),
+            'adminWorker' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/admin/worker/',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Worker',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'editWorker' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/admin/worker/edit/[:id]',
+                    'constraints' => array(
+                        'id' => '[\%a-zA-Z0-9_\.-]{1,}'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Worker',
+                        'action'     => 'edit',
+                    ),
+                ),
+            ),
+            'newWorker' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/admin/worker/new',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Worker',
+                        'action'     => 'new',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -102,6 +135,7 @@ return array(
             'Admin\Controller\Index'    => 'Admin\Controller\IndexController',
             'Admin\Controller\User'     => 'Admin\Controller\UserController',
             'Admin\Controller\Offer'     => 'Admin\Controller\OfferController',
+            'Admin\Controller\Worker'     => 'Admin\Controller\WorkerController',
         ),
     ),
     'view_manager' => array(

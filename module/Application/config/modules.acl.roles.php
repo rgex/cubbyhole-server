@@ -30,5 +30,9 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Admin\Controller\Offer\index',
                                 'Admin\Controller\Offer\new',
                                 'Admin\Controller\Offer\edit',
+
+                                'Admin\Controller\Worker\index',
+                                'Admin\Controller\Worker\new',
+                                'Admin\Controller\Worker\edit',
              ),
     );
