@@ -68,5 +68,14 @@ class TokenTable
             return $token;
         }
     }
+
+    public function getUserIdWithToken($token)
+    {
+        $rowset = $this->tableGateway->select(array('token' => $token));
+        $row = $rowset->current();
+        if(!$row)
+            return null;
+        return $row->user_id;
+    }
     
 }

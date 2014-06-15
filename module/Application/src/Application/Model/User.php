@@ -16,6 +16,8 @@ class User
     public $role;
     public $offer_id;
     public $expire;
+    public $nbr_of_files;
+    public $space_used_in_bytes;
 
     public function exchangeRow($data)
     {
@@ -31,6 +33,8 @@ class User
         $this->role                     = (isset($data->role)) ? $data->role : null;
         $this->offer_id                 = (isset($data->offer_id)) ? $data->offer_id : null;
         $this->expire                   = (isset($data->expire)) ? $data->expire : null;
+        $this->nbr_of_files             = (isset($data->nbr_of_files)) ? $data->nbr_of_files : null;
+        $this->space_used_in_bytes      = (isset($data->space_used_in_bytes)) ? $data->space_used_in_bytes : null;
     }
 
     public function exchangeArray(Array $data)
@@ -47,6 +51,8 @@ class User
         $this->role                     = (isset($data['role'])) ? $data['role'] : null;
         $this->offer_id                 = (isset($data['offer_id'])) ? $data['offer_id'] : null;
         $this->expire                   = (isset($data['expire'])) ? $data['expire'] : null;
+        $this->nbr_of_files             = (isset($data['nbr_of_files'])) ? $data['nbr_of_files'] : null;
+        $this->space_used_in_bytes      = (isset($data['space_used_in_bytes'])) ? $data['space_used_in_bytes'] : null;
     }
     
     public function returnArray(Array $filterOut = array())
@@ -63,7 +69,9 @@ class User
                 'subscription_ip'       => $this->subscription_ip,
                 'role'                  => $this->role,
                 'offer_id'              => $this->offer_id,
-                'expire'                => $this->expire
+                'expire'                => $this->expire,
+                'nbr_of_files'          => $this->nbr_of_files,
+                'space_used_in_bytes'   => $this->space_used_in_bytes
             );
             
             foreach($filterOut as $propertyName)

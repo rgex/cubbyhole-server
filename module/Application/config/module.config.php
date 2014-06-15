@@ -96,6 +96,16 @@ return array(
                     ),
                 ),
             ),
+            'getUserWithTokenWS' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/ws/getUserWithToken/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ws',
+                        'action'     => 'getUserWithToken',
+                    ),
+                ),
+            ),
             'captcha' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -163,9 +173,10 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Captcha' => 'Application\Controller\CaptchaController',
-            'Application\Controller\Customer' => 'Application\Controller\CustomerController'
+            'Application\Controller\Index'      => 'Application\Controller\IndexController',
+            'Application\Controller\Captcha'    => 'Application\Controller\CaptchaController',
+            'Application\Controller\Customer'   => 'Application\Controller\CustomerController',
+            'Application\Controller\Ws'         => 'Application\Controller\WsController'
         ),
     ),
     'view_manager' => array(

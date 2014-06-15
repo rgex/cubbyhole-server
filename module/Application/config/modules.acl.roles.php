@@ -7,6 +7,8 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Index\offer',
                                 'Application\Controller\Customer\files',
 
+                                //webservice
+                                'Application\Controller\Ws\getUserWithToken',
              ),
     
              'Customer'=> array('Application\Controller\Index\login',
@@ -18,6 +20,9 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Customer\index',
                                 'Application\Controller\Customer\offers',
                                 'Application\Controller\Customer\files',
+
+                                //webservice
+                                'Application\Controller\Ws\getUserWithToken',
              ),
 
              'Admin'=>    array('Application\Controller\Index\login',
@@ -41,5 +46,9 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Admin\Controller\Worker\index',
                                 'Admin\Controller\Worker\new',
                                 'Admin\Controller\Worker\edit',
+
+
+                                //webservice
+                                'Application\Controller\Ws\getUserWithToken',
              ),
     );
