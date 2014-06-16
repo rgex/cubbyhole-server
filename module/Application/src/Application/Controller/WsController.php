@@ -55,6 +55,20 @@ class WsController extends AbstractActionController
         }
         return $this->offerTable;
     }
+
+    /**
+     *
+     * @return Application\Model\WorkerTable
+     */
+    private function getWorkerTable()
+    {
+        if(!isset($this->workerTable))
+        {
+            $sm = $this->getServiceLocator();
+            $this->workerTable = $sm->get('Application\Model\WorkerTable');
+        }
+        return $this->workerTable;
+    }
     
     /**
      * 
@@ -73,6 +87,50 @@ class WsController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel();
+    }
+
+    public function loginAction()
+    {
+        if(isset($_POST['email']) && isset($_POST['password'])){
+            $userRow = $this->getUserTable()->login($_POST['email'],$_POST['password']);
+            $userId = $userRow->id;
+            if($userId)
+            {
+                $token  = $this->getTokenTable()->getOrCreateToken($userId);
+                $worker = $this->getWorkerTable()->getActiveWorker();
+                $res = array('token' => $token,
+                             'ws1' => $worker->ws1,
+                             'ws2' => $worker->ws2);
+
+                die(json_encode($res));
+            }
+            else
+            {
+                die(json_encode(array('error' => 'invalid token')));
+            }
+        }
+        else {
+            die(json_encode(array('error' => 'you have to provide an email and a password')));
+        }
+    }
+
+    public function logoutAction()
+    {
+        if(isset($_POST['token'])){
+            $userId = $this->getTokenTable()->getUserIdWithToken($_POST['token']);
+            if($userId)
+            {
+                $this->getTokenTable()->delete('token = \''.$_POST['token'].'\'');
+                die(json_encode(array('success' => 'success')));
+            }
+            else
+            {
+                die(json_encode(array('error' => 'invalid token')));
+            }
+        }
+        else {
+            die(json_encode(array('error' => 'no token provided')));
+        }
     }
 
     public function getUserWithTokenAction()

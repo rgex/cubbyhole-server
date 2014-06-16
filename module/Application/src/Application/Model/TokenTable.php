@@ -53,6 +53,11 @@ class TokenTable
         $this->tableGateway->update($data,$where);
     }
 
+    public function delete($where)
+    {
+        $this->tableGateway->delete($where);
+    }
+
     public function getOrCreateToken($user_id)
     {
         $token = $this->getTokenWithUserId($user_id);

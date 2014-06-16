@@ -36,6 +36,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 'Application\Controller\Index\logout',
                                 'Application\Controller\Captcha\generate',
                                 'Application\Controller\Index\offer',
+                                'Application\Controller\Customer\files',
 
 
                                 //Admin specific

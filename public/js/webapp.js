@@ -54,7 +54,10 @@ function refreshNaBar() {
 }
 
 function downloadFile(fileName) {
-	window.location.assign(downloadUrl + 'download/?userid=' + userId + '&file=' + pathToString(currentPath) + fileName + '&token=' + token);
+    if(typeof token === 'undefined')
+        window.location.assign(downloadUrl + 'download/?userid=' + userId + '&path=' + pathToString(currentPath) + '&file=' + fileName);
+    else
+	    window.location.assign(downloadUrl + 'download/?userid=' + userId + '&path=' + pathToString(currentPath) + '&file=' + fileName + '&token=' + token);
 }
 
 function displayPath(json,newPath) {
@@ -74,15 +77,30 @@ for(i in json) {
 		var publicStatusAction = '<span class="public"><a href="#" title="Rendre privé" onclick="makePrivate(\'' + json[i][1] + '\');"><img src="/img/private.png"></a></span>';
 
 	if(json[i][0] === 'D') { //directory
-        	$('.fileExplorer').append('<div class="element element-' + i%2 + '">'+
-					  publicStatus +
-                                          '<span class="type"><img src="/img/folder.gif"></span>' +
-					  '<span class="name"><a href="#" onclick="listPath(\'' + json[i][1] + '\'); return false;">' + json[i][1] + '</a></span>' +
-					  publicStatusAction +
-					  '<span class="delete"><a href="#" title="Supprimer" onclick="deleteElement(\'' + json[i][1] + '\');"><img src="/img/delete.png"></a></span>' +
-					  '<span class="download"></span>' +
- 			                  '&nbsp;</div>' +
-					  '<div style="clear:both;"></div>');
+            if(typeof token === 'undefined')
+            {
+                $('.fileExplorer').append('<div class="element element-' + i%2 + '">'+
+                    '<span class="public">&nbsp;</span>' +
+                    '<span class="type"><img src="/img/folder.gif"></span>' +
+                    '<span class="name"><a href="#" onclick="listPath(\'' + json[i][1] + '\'); return false;">' + json[i][1] + '</a></span>' +
+                    '<span class="public">&nbsp;</span>' +
+                    '<span class="delete">&nbsp;</span>' +
+                    '<span class="download">&nbsp;</span>' +
+                    '&nbsp;</div>' +
+                    '<div style="clear:both;"></div>');
+            }
+            else
+            {
+                $('.fileExplorer').append('<div class="element element-' + i%2 + '">'+
+                          publicStatus +
+                                              '<span class="type"><img src="/img/folder.gif"></span>' +
+                          '<span class="name"><a href="#" onclick="listPath(\'' + json[i][1] + '\'); return false;">' + json[i][1] + '</a></span>' +
+                          publicStatusAction +
+                          '<span class="delete"><a href="#" title="Supprimer" onclick="deleteElement(\'' + json[i][1] + '\');"><img src="/img/delete.png"></a></span>' +
+                          '<span class="download"></span>' +
+                                  '&nbsp;</div>' +
+                          '<div style="clear:both;"></div>');
+            }
 	}
 	else {	//file
 		var size = 0;
@@ -90,16 +108,32 @@ for(i in json) {
 			size = Math.ceil(json[i][2]/100)/10 + ' Ko';
 		if(json[i][2] <= 1000*1000*1000 && json[i][2] > 1000*1000) //si inférieur au giga
 			size = Math.ceil(json[i][2]/100000)/10 + ' Mo';
+            if(typeof token === 'undefined')
+            {
                 $('.fileExplorer').append('<div class="element element-' + i%2 + '">'+
-					  publicStatus +
-                                          '<span class="type"><img src="/img/file.png"></span>' +
-                                          '<span class="name">' + json[i][1] + '</span>' +
-					  publicStatusAction +
-					  '<span class="delete"><a href="#" title="Supprimer" onclick="deleteElement(\'' + json[i][1] + '\');"><img src="/img/delete.png"></a></span>' +
-					  '<span class="download"><a href="#" title="Télécharger" onclick="downloadFile(\'' + json[i][1] + '\'); return false;"><img src="/img/download.png"></a></span>' +
-					  '<span class="size">' + size + '</span>' +
-                                          '&nbsp;</div>'+
-					  '<div style="clear:both;"></div>');
+                    '<span class="public">&nbsp;</span>' +
+                    '<span class="type"><img src="/img/file.png"></span>' +
+                    '<span class="name">' + json[i][1] + '</span>' +
+                    '<span class="public">&nbsp;</span>' +
+					'<span class="delete"></span>' +
+					'<span class="download"><a href="#" title="Télécharger" onclick="downloadFile(\'' + json[i][1] + '\'); return false;"><img src="/img/download.png"></a></span>' +
+					'<span class="size">' + size + '</span>' +
+                    '&nbsp;</div>'+
+					'<div style="clear:both;"></div>');
+            }
+            else
+            {
+                $('.fileExplorer').append('<div class="element element-' + i%2 + '">'+
+                    publicStatus +
+                    '<span class="type"><img src="/img/file.png"></span>' +
+                    '<span class="name">' + json[i][1] + '</span>' +
+                    publicStatusAction +
+                    '<span class="delete"><a href="#" title="Supprimer" onclick="deleteElement(\'' + json[i][1] + '\');"><img src="/img/delete.png"></a></span>' +
+                    '<span class="download"><a href="#" title="Télécharger" onclick="downloadFile(\'' + json[i][1] + '\'); return false;"><img src="/img/download.png"></a></span>' +
+                    '<span class="size">' + size + '</span>' +
+                    '&nbsp;</div>'+
+                    '<div style="clear:both;"></div>');
+            }
 		}
         }
 	currentPath = newPath;
