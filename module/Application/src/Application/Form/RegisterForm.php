@@ -75,6 +75,22 @@ class RegisterForm extends Form
                              'label'    => 'Retype Password'
                          )
             ));
+
+
+       $this->add(array('name' => 'country',
+            'type'     => 'Zend\Form\Element\Select',
+            'options'      => array(
+                'value_options' => array('Belgium' => 'Belgium',
+                                         'Brazil' => 'Brazil',
+                                         'China' => 'China',
+                                         'Germany' => 'Germany',
+                                         'Italy' => 'Italy',
+                                         'France' => 'France',
+                                         'United States' => 'United States',
+                                         'Customer' => 'Customer'),
+                'label'    => 'country'
+            )
+       ));
        
        $captcha = new CaptchaImage();
        $captcha->setFont('./data/captcha/font/FreeSansBold.ttf');
@@ -87,7 +103,7 @@ class RegisterForm extends Form
                              'name'     => 'captcha',
                              ),
                              'options'  => array(
-                                 'label'    => 'Please proove you are a human',
+                                 'label'    => 'Please prove you are a human',
                                  'captcha'  => $captcha 
                             )
             ));

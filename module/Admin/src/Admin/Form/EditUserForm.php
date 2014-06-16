@@ -85,6 +85,21 @@ class EditUserForm extends Form
             )
         ));
 
+        $this->add(array('name' => 'country',
+            'type'     => 'Zend\Form\Element\Select',
+            'options'      => array(
+                'value_options' => array('Belgium' => 'Belgium',
+                    'Brazil' => 'Brazil',
+                    'China' => 'China',
+                    'Germany' => 'Germany',
+                    'Italy' => 'Italy',
+                    'France' => 'France',
+                    'United States' => 'United States',
+                    'Customer' => 'Customer'),
+                'label'    => 'country'
+            )
+        ));
+
        $this->add(array('name' => 'save',
                          'attributes'   => array(
                              'type'     => 'submit',
