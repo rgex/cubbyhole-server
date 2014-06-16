@@ -1,4 +1,9 @@
+<h1>Cubbyhole is under maintenance</h1>
+
+We are currently under maintenance please retry in some minutes.
+
 <?php
+die();
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
