@@ -110,13 +110,13 @@ class CronjobController extends AbstractActionController
                                                       'used_space_bytes' => $usedSpace,
                                                       'free_space_bytes' => $freeSpace,
                                                       'last_update' => time(),
-                                                     ),'id = '.$worker->id);
+                                                     ),array('id' => $worker->id));
 
             }
             else
             {
                 $this->getWorkerTable()->update(array('status' => 'down',
-                                                      'last_update' => time()),'id = '.$worker->id);
+                                                      'last_update' => time()),array('id' => $worker->id));
             }
         }
     }

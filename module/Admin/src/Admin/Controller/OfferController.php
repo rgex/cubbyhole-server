@@ -119,7 +119,7 @@ class OfferController extends AbstractActionController
 				   'count');
                 $data = $offer->returnArray($filterOut);
                 $data['date_last_edit'] = time();
-                $this->getOfferTable()->update($data, 'id = \''.$this->params()->fromRoute('id').'\'');
+                $this->getOfferTable()->update($data, array('id' => (int)$this->params()->fromRoute('id')));
                 $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The offer has been edited.'));
                 $this->redirect()->toRoute('adminOffer');
             }

@@ -72,7 +72,7 @@ class UserTable
         $user->exchangeRow($userRow);
         $data = $user->returnArray(array('count'));
         $data['space_used_in_bytes'] += $space;
-        $this->tableGateway->update($data,'id = '.$userId);
+        $this->tableGateway->update($data,array('id' => (int)$userId));
     }
 
     public function addFiles($userId, $nbrOfFiles)
@@ -82,7 +82,7 @@ class UserTable
         $user->exchangeRow($userRow);
         $data = $user->returnArray(array('count'));
         $data['nbr_of_files'] += $nbrOfFiles;
-        $this->tableGateway->update($data,'id = '.$userId);
+        $this->tableGateway->update($data,array('id' => (int)$userId));
     }
 
     public function count($condition = '1 = 1')

@@ -115,7 +115,7 @@ class UserController extends AbstractActionController
                     $bcrypt = new Bcrypt();
                     $user->password = $bcrypt->create($user->password);
                 }
-                $this->getUserTable()->update($user->returnArray($filterOut), 'id = \''.$this->params()->fromRoute('id').'\'');
+                $this->getUserTable()->update($user->returnArray($filterOut), array('id' => (int)$this->params()->fromRoute('id')));
                 $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The user has been edited.'));
                 $this->redirect()->toRoute('adminUser');
             }

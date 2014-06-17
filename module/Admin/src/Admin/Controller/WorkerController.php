@@ -125,10 +125,10 @@ class WorkerController extends AbstractActionController
                                    'free_space_bytes',
                                    'used_space_bytes',
                                    'last_update',
-				   'count',
+				                   'count',
                                    'status');
                 $data = $offer->returnArray($filterOut);
-                $this->getWorkerTable()->update($data, 'id = \''.$this->params()->fromRoute('id').'\'');
+                $this->getWorkerTable()->update($data, array('id' => (int)$this->params()->fromRoute('id')));
                 $this->flashmessenger()->addInfoMessage($this->getTranslator()->translate('The worker has been edited.'));
                 $this->redirect()->toRoute('adminWorker');
             }

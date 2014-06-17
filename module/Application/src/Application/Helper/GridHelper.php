@@ -58,7 +58,7 @@ class GridHelper
         $enableDelete       = isset($options['enableDelete'])? true : false;
 
         if(isset($this->params['delete'])) {
-            $this->tableGateway->delete(' id = \''.$this->params['delete'].'\'');
+            $this->tableGateway->delete(array('id' => (int)$this->params['delete']));
         }
 
         $rowset = $this->tableGateway->select(function(Select $select)
