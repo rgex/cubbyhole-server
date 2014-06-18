@@ -86,8 +86,7 @@ class RegisterForm extends Form
                                          'Germany' => 'Germany',
                                          'Italy' => 'Italy',
                                          'France' => 'France',
-                                         'United States' => 'United States',
-                                         'Customer' => 'Customer'),
+                                         'United States' => 'United States'),
                 'label'    => 'country'
             )
        ));

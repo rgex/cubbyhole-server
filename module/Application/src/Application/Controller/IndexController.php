@@ -3,6 +3,8 @@
 namespace Application\Controller;
 
 use Application\Helper\WorkerHelper;
+use Zend\Http\Client;
+use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Model\User;
@@ -76,6 +78,12 @@ class IndexController extends AbstractActionController
     
     public function indexAction()
     {
+/*
+        $request = new Request();
+        $client = new Client('http://example.org');
+        //$client = new Client('http://example.org:3000/');
+        $response = $client->dispatch($request);
+*/
         $offers = $this->getOfferTable()->getBestOffers();
         return new ViewModel(array('offers' => $offers));
     }
