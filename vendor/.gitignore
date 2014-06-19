@@ -6,3 +6,5 @@ autoload.php
 phpunit
 sebastian
 bin
+symfony
+paypal
