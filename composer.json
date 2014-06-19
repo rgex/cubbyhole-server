@@ -10,6 +10,7 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
-        "bitcoin-php/bitcoin-ecdsa": "1.*"
+        "phpunit/phpunit": "*",
+	"paypal/sdk-core-php": "*"
     }
 }
