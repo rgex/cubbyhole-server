@@ -1,77 +1,74 @@
-ZendSkeletonApplication
-=======================
+This is a Supinfo group project.
+---
+**Team members are :**
 
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+ * 124898 Jan Moritz LINDEMANN
+ * 164271 Lionel CHRISTANVAL
+ * 165003 Steeve BULGARE
+ * 162095 Jérémy CETOUT
+ * 164340 Mike ROUSSEAEU
 
-Installation
-------------
+The project can be downloaded here :
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
+ - https://github.com/rgex/cubbyhole-server/blob/master/M1%20-%20Cubbyhole.pdf?raw=true
 
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="https://packages.zendframework.com" zendframework/skeleton-application path/to/install
+Other related project repositories are :
 
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
+ - https://github.com/rgex/cubbyhole-worker
 
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
+ - https://github.com/rgex/cubbyhole-mobileclient
 
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
+ - https://github.com/rgex/cubbyhole-java
 
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
 
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
+Overview
+---
 
-You would then invoke `composer` to install dependencies per the previous
-example.
 
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
+Server Setup
+---
 
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
+**Install apache2, mysql-server, php5, git, php5-gd, php5-mysql, curl, php5-curl.**
+```
+apt-get install apache2 mysql-server php5 git php5-gd php5-mysql curl php5-curl 
+```
+Create the database with on of the sql file that you will find in the sql folder.
 
-Web Server Setup
-----------------
+**Execute this command in order to activate the url rewriting.**
+```
+a2enmod rewriting
+```
+**Download the source codes from Github.**
+```
+cd /var/www/
+git clone https://github.com/rgex/cubbyhole-server
+cd /var/www/cubbyhole-server
+cp vhosts/cubbyhole-server /etc/apache2/sites-enabled/
+service apache2 restart
+```
+**Install vendor libraries with composer**
+```
+php composer.phar install
+```
+**You can also update them**
+```
+php composer.phar update
+```
+install the worker (https://github.com/rgex/cubbyhole-worker)
 
-### PHP CLI Server
+Connect you on the cubbyhole server as an administrator and add the worker in the manage worker tab.
 
-The simplest way to get started if you are using PHP 5.4 or above is to start the internal PHP cli-server in the root directory:
 
-    php -S 0.0.0.0:8080 -t public/ public/index.php
-
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
-
-**Note: ** The built-in CLI server is *for development only*.
-
-### Apache Setup
-
-To setup apache, setup a virtual host to point to the public/ directory of the
-project and you should be ready to go! It should look something like below:
-
-    <VirtualHost *:80>
-        ServerName zf2-tutorial.localhost
-        DocumentRoot /path/to/zf2-tutorial/public
-        SetEnv APPLICATION_ENV "development"
-        <Directory /path/to/zf2-tutorial/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Order allow,deny
-            Allow from all
-        </Directory>
-    </VirtualHost>
+**Update the server at any time by executing**
+```
+cd /var/www/cubbyhole-server
+git pull
+```
+**If you want to display the maintenance page**
+```
+git checkout maintenance-page
+```
+**To show the site again**
+```
+git checkout master
+```
