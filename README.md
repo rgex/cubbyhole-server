@@ -27,3 +27,43 @@ Overview
 
 Server Setup
 ---
+
+**Install apache2, mysql-server, php5, git, php5-gd, php5-mysql, curl, php5-curl.**
+```
+apt-get install apache2 mysql-server php5 git php5-gd php5-mysql curl php5-curl 
+```
+**Create the database with on of the sql file that you will find in the sql folder.**
+
+**Execute this command in order to activate the url rewriting.**
+```
+a2enmod rewriting
+```
+**Download the source codes from Github.**
+```
+cd /var/www/
+git clone https://github.com/rgex/cubbyhole-server
+cd /var/www/cubbyhole-server
+cp vhosts/cubbyhole-server /etc/apache2/sites-enabled/
+service apache2 restart
+```
+**Install vendor libraries with composer**
+```
+php composer.phar install
+```
+**You can also update them**
+```
+php composer.phar update
+```
+**Update the server at any time by executing**
+```
+cd /var/www/cubbyhole-server
+git pull
+```
+**If you want to display the maintenance page**
+```
+git checkout maintenance-page
+```
+**To show the site again**
+```
+git checkout master
+```
