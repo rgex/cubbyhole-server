@@ -52,7 +52,7 @@ Create the database with on of the sql file that you will find in the sql folder
 
 **Execute this command in order to activate the url rewriting.**
 ```
-a2enmod rewriting
+a2enmod rewrite
 ```
 **Download the source codes from Github.**
 ```
