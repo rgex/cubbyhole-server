@@ -6,7 +6,7 @@ This is a Supinfo group project.
  * 164271 Lionel CHRISTANVAL
  * 165003 Steeve BULGARE
  * 162095 Jérémy CETOUT
- * 164340 Mike ROUSSEAEU
+ * 164340 Mike ROUSSEAU
 
 The project can be downloaded here :
 
@@ -24,6 +24,22 @@ Other related project repositories are :
 Overview
 ---
 
+**File manager**
+![alt tag](https://raw.githubusercontent.com/rgex/cubbyhole-server/master/screenshots/file-manager.png)
+
+
+
+**User stats**
+
+
+![alt tag](https://raw.githubusercontent.com/rgex/cubbyhole-server/master/screenshots/user-start-page.png)
+
+
+
+**Business dashboard**
+
+
+![alt tag](https://raw.githubusercontent.com/rgex/cubbyhole-server/master/screenshots/business-dashboard.png)
 
 Server Setup
 ---
