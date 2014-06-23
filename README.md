@@ -2,6 +2,8 @@ This is a Supinfo group project.
 ---
 **Team members are :**
 
+**M1 project campus Guadeloupe**
+
  * 124898 Jan Moritz LINDEMANN
  * 164271 Lionel CHRISTANVAL
  * 165003 Steeve BULGARE
