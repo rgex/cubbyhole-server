@@ -92,6 +92,8 @@ class CronjobController extends AbstractActionController
 
     public function updateWorkersAction()
     {
+	for($i=0; $i<12; $i++)
+	{
         $workerHelper = new WorkerHelper($this->getWorkerTable());
         $workers = $this->getWorkerTable()->fetchAll();
         foreach($workers as $worker)
@@ -124,5 +126,8 @@ preg_match_all("#[^0-9]{1,}([0-9]{1,})[^0-9]{1,}#USi",$space,$out);
                                                       'last_update' => time()),array('id' => $worker->id));
             }
         }
+echo "\nWaiting 5 seconds ...\n";
+sleep(5);
+	}
     }
 }
