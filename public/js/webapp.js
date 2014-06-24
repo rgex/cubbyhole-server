@@ -238,7 +238,7 @@ function closeUploadDiv() {
 
 function displayUpload() {
 	$('.upload').html(' ');
-	$('.upload').append('<div class="fermer"><a href="#" onclick="closeUploadDiv();">Fermer X</a></div>' +
+	$('.upload').append('<div class="fermer"><a href="#" onclick="closeUploadDiv();">Close X</a></div>' +
 			    '<br>' +
 			    '<form action="' + downloadUrl + 'upload" method="POST" enctype="multipart/form-data" id="uploadForm" ' +
 			    'onsubmit="$(\'#uploadPath\').val(pathToString(currentPath)); if(currentPath.length === 0) { $(\'#uploadPath\').val(\'/\'); }">' +
