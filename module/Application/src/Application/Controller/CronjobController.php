@@ -97,13 +97,18 @@ class CronjobController extends AbstractActionController
         foreach($workers as $worker)
         {
             $res = $workerHelper->pingWorker($worker->ws1);
+	    echo $res."\n---------------------------\n";
             if($res)
             {
                 $space = explode("\n",$res);
                 $space = $space[1];
+//echo "SPACE : ".$space;
+preg_match_all("#[^0-9]{1,}([0-9]{1,})[^0-9]{1,}#USi",$space,$out);
                 $space = explode(" ",$space);
-                $usedSpace = $space[2] * 1000;
-                $freeSpace = $space[3] * 1000;
+//echo "\n EXPLODED : ";
+//print_r($out);
+                $usedSpace = (int)$out[1][1] * 1000;
+                $freeSpace = (int)$out[1][2] * 1000;
                 var_dump($usedSpace);
                 var_dump($freeSpace);
                 $this->getWorkerTable()->update(array('status' => 'up',
