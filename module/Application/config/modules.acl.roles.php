@@ -13,6 +13,9 @@ return array('guest'=>    array('Application\Controller\Index\login',
 
                                 //cronjob
                                 'Application\Controller\Cronjob\updateWorkers',
+
+                                //test
+                                'Application\Controller\SeleniumTest\loginTest',
              ),
     
              'Customer'=> array('Application\Controller\Index\login',
