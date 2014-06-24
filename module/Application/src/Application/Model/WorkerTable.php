@@ -49,7 +49,8 @@ class WorkerTable
 
     public function getActiveWorker()
     {
-        $select = new Select(array('status' => 'up'));
+        $select = new Select();
+        $select->where(array('status' => 'up'));
         $select->order('last_update DESC')->limit(1);
         $resultSet = $this->tableGateway->select($select);
         return $resultSet->current();
