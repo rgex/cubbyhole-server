@@ -107,7 +107,7 @@ preg_match_all("#[^0-9]{1,}([0-9]{1,})[^0-9]{1,}#USi",$space,$out);
                 $space = explode(" ",$space);
 //echo "\n EXPLODED : ";
 //print_r($out);
-                $usedSpace = (int)$out[1][1] * 1000;
+                $usedSpace = ((int)$out[1][1] - (int)$out[1][2]) * 1000;
                 $freeSpace = (int)$out[1][2] * 1000;
                 var_dump($usedSpace);
                 var_dump($freeSpace);
