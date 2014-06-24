@@ -3,6 +3,7 @@
 namespace Application\Model;
 use Zend\Db\Sql\Expression;
 use Zend\Db\Sql\Select;
+use Zend\Db\Sql\Where;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Crypt\Password\Bcrypt;
@@ -50,7 +51,8 @@ class WorkerTable
     public function getActiveWorker()
     {
         $select = new Select();
-        $select->where(array('status' => 'up'));
+        $where = new Where();
+        $select->where($where->equalTo('status','up'));
         $select->order('last_update DESC')->limit(1);
         $resultSet = $this->tableGateway->select($select);
         return $resultSet->current();
