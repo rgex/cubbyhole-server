@@ -14,7 +14,7 @@
 return array(
     'db' => array(
         'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=cubbyhole;host=192.168.30.41',
+        'dsn' => 'mysql:dbname=cubbyhole-server;hostname=localhost',
         'username' => 'root',
         'password' => '$admin971',
         'driver_options' => array(

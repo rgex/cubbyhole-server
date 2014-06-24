@@ -1,5 +1,8 @@
 This is a Supinfo group project.
 ---
+
+**M1 project campus Guadeloupe**
+
 **Team members are :**
 
  * 124898 Jan Moritz LINDEMANN
@@ -48,11 +51,11 @@ Server Setup
 ```
 apt-get install apache2 mysql-server php5 git php5-gd php5-mysql curl php5-curl 
 ```
-Create the database with on of the sql file that you will find in the sql folder.
+Create the database with the sql file that you will find in the sql folder.
 
 **Execute this command in order to activate the url rewriting.**
 ```
-a2enmod rewriting
+a2enmod rewrite
 ```
 **Download the source codes from Github.**
 ```
