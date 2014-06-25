@@ -183,11 +183,12 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index'      => 'Application\Controller\IndexController',
-            'Application\Controller\Captcha'    => 'Application\Controller\CaptchaController',
-            'Application\Controller\Customer'   => 'Application\Controller\CustomerController',
-            'Application\Controller\Ws'         => 'Application\Controller\WsController',
-            'Application\Controller\Cronjob'    => 'Application\Controller\CronjobController'
+            'Application\Controller\Index'          => 'Application\Controller\IndexController',
+            'Application\Controller\Captcha'        => 'Application\Controller\CaptchaController',
+            'Application\Controller\Customer'       => 'Application\Controller\CustomerController',
+            'Application\Controller\Ws'             => 'Application\Controller\WsController',
+            'Application\Controller\Cronjob'        => 'Application\Controller\CronjobController',
+            'Application\Controller\SeleniumTest'   => 'Application\Controller\SeleniumTestController'
         ),
     ),
     'view_manager' => array(
@@ -219,6 +220,15 @@ return array(
                         'defaults' => array(
                             'controller' => 'Application\Controller\Cronjob',
                             'action' => 'updateWorkers'
+                        )
+                    )
+                ),
+                'loginTest' => array(
+                    'options' => array(
+                        'route'    => 'loginTest',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\SeleniumTest',
+                            'action' => 'loginTest'
                         )
                     )
                 )
