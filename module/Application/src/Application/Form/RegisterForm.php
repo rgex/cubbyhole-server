@@ -94,7 +94,7 @@ class RegisterForm extends Form
        $captcha = new CaptchaImage();
        $captcha->setFont('./data/captcha/font/FreeSansBold.ttf');
        $captcha->setImgDir('./data/captcha');
-       $captcha->setImgUrl('/captcha');
+       $captcha->setImgUrl('captcha');
        
        $this->add(array('name' => 'captcha',
                         'type' => 'Zend\Form\Element\Captcha',
