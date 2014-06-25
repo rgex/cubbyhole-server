@@ -31,10 +31,25 @@ class LoginTest extends \PHPUnit_Extensions_SeleniumTestCase
     public function login()
     {
         $this->open('/login');
-        $this->waitForPageToLoad(10000);
-        sleep(1);
-        $this->type("edit-name", "myuser");
 
-        echo "login";
+        $this->pause(5000);
+        $this->type('email', 'qa@cubbyhole.com');
+        $this->type('password', '$admin971');
+
+        $this->pause(3000);
+        $this->click('submit');
+
+        $this->pause(2000);
+        $this->click('css=.icon-network');
+
+        $this->pause(3000);
+        $this->assertElementContainsText('//*[@class=\'name\']','qa-file');
+        $this->click('link=qa-folder');
+
+        $this->pause(3000);
+        $this->assertElementContainsText('//*[@class=\'name\']','qa-file');
+
+        $this->pause(1000);
+
     }
 }
