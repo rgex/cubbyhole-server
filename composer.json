@@ -11,7 +11,7 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
         "phpunit/phpunit": "*",
-        "phpunit/phpunit-selenium": "*",
+        "phpunit/phpunit-selenium": "dev-master",
 	    "paypal/sdk-core-php": "*"
     }
 }

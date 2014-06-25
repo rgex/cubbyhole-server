@@ -2,16 +2,39 @@
 
 namespace Application\Test;
 
-class LoginTest extends PHPUnit_Extensions_Selenium2TestCase
+
+class LoginTest extends \PHPUnit_Extensions_SeleniumTestCase
 {
-    protected function setUp()
+
+    public function __construct()
     {
-        $this->setBrowser('firefox');
-        $this->setBrowserUrl('http://cubbyhole/');
+        $this->setUp();
+        $this->prepareTestSession();
+    }
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->getDriver(array('host' => 'localhost',
+            'name' => 'firefox',
+            'browser' => '*firefox',
+            'port' => 4444,
+            'timeout' => 10,
+            'httpTimeout' => 10
+        ));
+        $this->setBrowser("*firefox");
+        $this->setBrowserUrl("http://cubbyhole-server/");
+
     }
 
     public function login()
     {
-        $this->setBrowserUrl('http://cubbyhole/login');
+        $this->open('/login');
+        $this->waitForPageToLoad(10000);
+        sleep(1);
+        $this->type("edit-name", "myuser");
+
+        echo "login";
     }
 }

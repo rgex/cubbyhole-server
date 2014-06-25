@@ -188,7 +188,7 @@ return array(
             'Application\Controller\Customer'       => 'Application\Controller\CustomerController',
             'Application\Controller\Ws'             => 'Application\Controller\WsController',
             'Application\Controller\Cronjob'        => 'Application\Controller\CronjobController',
-            'Application\Controller\SeleniumTest'   => 'Application\Controller\SeleniumTest'
+            'Application\Controller\SeleniumTest'   => 'Application\Controller\SeleniumTestController'
         ),
     ),
     'view_manager' => array(

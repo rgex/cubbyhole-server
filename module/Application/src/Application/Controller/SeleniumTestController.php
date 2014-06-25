@@ -3,6 +3,7 @@
 namespace Application\Controller;
 
 use Application\Test\LoginTest;
+use Zend\Mvc\Controller\AbstractActionController;
 
 class SeleniumTestController extends AbstractActionController
 {
@@ -11,7 +12,7 @@ class SeleniumTestController extends AbstractActionController
 
     }
 
-    public function testLoginAction()
+    public function loginTestAction()
     {
         $loginTest = new LoginTest();
         $loginTest->login();
