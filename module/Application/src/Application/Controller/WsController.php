@@ -106,7 +106,7 @@ class WsController extends AbstractActionController
             }
             else
             {
-                die(json_encode(array('error' => 'invalid token')));
+                die(json_encode(array('error' => 'unknown error')));
             }
         }
         else {

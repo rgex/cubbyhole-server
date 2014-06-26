@@ -116,6 +116,16 @@ return array(
                     ),
                 ),
             ),
+            'loginWs' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/ws/login/',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ws',
+                        'action'     => 'login',
+                    ),
+                ),
+            ),
             'captcha' => array(
                 'type' => 'Segment',
                 'options' => array(

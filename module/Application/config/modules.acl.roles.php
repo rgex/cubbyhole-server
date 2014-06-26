@@ -10,6 +10,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 //webservice
                                 'Application\Controller\Ws\getUserWithToken',
                                 'Application\Controller\Ws\updateDiskSpace',
+                                'Application\Controller\Ws\login',
 
                                 //cronjob
                                 'Application\Controller\Cronjob\updateWorkers',
@@ -31,6 +32,7 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 //webservice
                                 'Application\Controller\Ws\getUserWithToken',
                                 'Application\Controller\Ws\updateDiskSpace',
+                                'Application\Controller\Ws\login',
              ),
 
              'Admin'=>    array('Application\Controller\Index\login',
@@ -60,5 +62,6 @@ return array('guest'=>    array('Application\Controller\Index\login',
                                 //webservice
                                 'Application\Controller\Ws\getUserWithToken',
                                 'Application\Controller\Ws\updateDiskSpace',
+                                'Application\Controller\Ws\login',
              ),
     );
