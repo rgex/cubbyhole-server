@@ -93,7 +93,7 @@ class WsController extends AbstractActionController
     {
         if(isset($_POST['email']) && isset($_POST['password'])){
             $userRow = $this->getUserTable()->login($_POST['email'],$_POST['password']);
-            $userId = $userRow->id;
+            $userId = isset($userRow->id)? $userRow->id : null;
             if($userId)
             {
                 $token  = $this->getTokenTable()->getOrCreateToken($userId);
@@ -106,7 +106,7 @@ class WsController extends AbstractActionController
             }
             else
             {
-                die(json_encode(array('error' => 'unknown error')));
+                die(json_encode(array('error' => 'wrong email / password')));
             }
         }
         else {
