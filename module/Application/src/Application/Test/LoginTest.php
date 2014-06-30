@@ -36,20 +36,20 @@ class LoginTest extends \PHPUnit_Extensions_SeleniumTestCase
         $this->type('email', 'qa@cubbyhole.com');
         $this->type('password', '$admin971');
 
-        $this->pause(3000);
+        $this->pause(5000);
         $this->click('submit');
 
-        $this->pause(2000);
+        $this->pause(5000);
         $this->click('css=.icon-network');
 
-        $this->pause(3000);
+        $this->pause(5000);
         $this->assertElementContainsText('//*[@class=\'name\']','qa-file');
         $this->click('link=qa-folder');
 
-        $this->pause(3000);
+        $this->pause(5000);
         $this->assertElementContainsText('//*[@class=\'name\']','qa-file');
 
-        $this->pause(1000);
+        $this->pause(3000);
 
     }
 }

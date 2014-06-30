@@ -10,7 +10,7 @@ class CaptchaController extends AbstractActionController
     {
 
     }
-    
+
     public function generateAction()
     {
             $response = $this->getResponse();

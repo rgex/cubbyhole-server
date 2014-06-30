@@ -33,9 +33,11 @@ class OfferTable
 
     public function getBestOffers($n = 3)
     {
-        $select = new Select();
-        $select->order('position_priority DESC')->limit($n);
-        $resultSet = $this->tableGateway->select($select);
+        $this->limit = $n;
+        $resultSet = $this->tableGateway->select((function (Select $select){
+            $select->order('position_priority DESC');
+            $select->limit($this->limit);
+        }));
         return $resultSet;
     }
     
