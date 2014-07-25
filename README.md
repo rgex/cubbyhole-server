@@ -11,7 +11,7 @@ This is a Supinfo group project.
  * 162095 Jérémy CETOUT
  * 164340 Mike ROUSSEAU
 
-The project can be downloaded here :
+The project subject can be downloaded here :
 
  - https://github.com/rgex/cubbyhole-server/blob/master/M1%20-%20Cubbyhole.pdf?raw=true
 
