@@ -6,10 +6,6 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class CaptchaController extends AbstractActionController
 {
-    public function __construct()
-    {
-
-    }
 
     public function generateAction()
     {
@@ -20,7 +16,7 @@ class CaptchaController extends AbstractActionController
                     
             if($id)
             {
-                $image = './data/captcha/'.$id;
+                $image = './data/captcha/'.(int)$id;
                 if(file_exists($image) != false)
                 {
                     $imageContent = file_get_contents($image);
