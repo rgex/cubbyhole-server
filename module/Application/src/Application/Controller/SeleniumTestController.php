@@ -7,10 +7,6 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class SeleniumTestController extends AbstractActionController
 {
-    public function __construct()
-    {
-
-    }
 
     public function loginTestAction()
     {
