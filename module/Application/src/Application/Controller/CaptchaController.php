@@ -12,11 +12,11 @@ class CaptchaController extends AbstractActionController
             $response = $this->getResponse();
             $response->getHeaders()->addHeaderLine('Content-Type','image/png');
             
-            $id = $this->params('id',false);
+            $id = (int)$this->params('id',false);
                     
             if($id)
             {
-                $image = './data/captcha/'.(int)$id;
+                $image = './data/captcha/'.$id;
                 if(file_exists($image) != false)
                 {
                     $imageContent = file_get_contents($image);
