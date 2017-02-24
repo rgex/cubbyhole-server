@@ -22,11 +22,6 @@ class CaptchaController extends AbstractActionController
                     $imageContent = file_get_contents($image);
                     $response->setStatusCode(200);
                     $response->setContent($imageContent);
-                    
-                    if(file_exists($image) == true)
-                    {
-                        //unlink($image);
-                    }
                 }
             }
             
