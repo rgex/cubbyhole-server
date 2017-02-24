@@ -14,10 +14,6 @@ use Zend\Crypt\Password\Bcrypt;
 
 class CustomerController extends AbstractActionController
 {
-    public function __construct()
-    {
-
-    }
     
     /**
      * 
