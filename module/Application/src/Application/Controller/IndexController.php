@@ -15,10 +15,6 @@ use Zend\Crypt\Password\Bcrypt;
 
 class IndexController extends AbstractActionController
 {
-    public function __construct()
-    {
-
-    }
     
     /**
      * 
@@ -78,12 +74,6 @@ class IndexController extends AbstractActionController
     
     public function indexAction()
     {
-/*
-        $request = new Request();
-        $client = new Client('http://example.org');
-        //$client = new Client('http://example.org:3000/');
-        $response = $client->dispatch($request);
-*/
         $offers = $this->getOfferTable()->getBestOffers();
         return new ViewModel(array('offers' => $offers));
     }
