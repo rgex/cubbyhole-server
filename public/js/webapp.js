@@ -197,13 +197,6 @@ function deleteElement(element) {
 	}
 }
 
-function upload() {/*
-	$('#uploadPath').val(currentPath);
-	if(currentPath.length === 0)
-		$('#uploadPath').val('/');
-	$('#uploadProgress').show();*/
-}
-
 function loadAjaxForm() {
 	$('#uploadForm').ajaxForm({
 	beforeSend: function() {
